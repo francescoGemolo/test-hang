@@ -81,10 +81,23 @@ label {
     font-size: 16px;
 }
 
+.label-group {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 8px;
+}
+
+.label-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .form-group input {
     border-radius: 12px;
     padding: 14px;
-    margin-top: 6px;
+    margin-top: 8px;
     border: 1px solid hsla(0, 0%, 98%, 0.100);
     background: #262626;
     color: #fafafa;
