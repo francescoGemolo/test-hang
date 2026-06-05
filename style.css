@@ -69,7 +69,7 @@ button {
 
 .form-header p {
     color: #a3a3a3;
-    font-size: 18px;
+    font-size: 16px;
 }
 
 .form-group {
@@ -79,6 +79,12 @@ button {
 
 label {
     font-size: 16px;
+}
+
+label span {
+    font-size: 14px;
+    color: #7a7a7a;
+    margin-left: 2px;
 }
 
 .label-group {
