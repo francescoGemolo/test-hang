@@ -14,14 +14,17 @@ html {
 body {
     margin: 0;
     padding: 0;
-    font-family: "Inter Tight", system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    font-weight: 400;
-    font-style: normal;
+
     background: #0a0a0a;
+
+    font-family: "Inter Tight", system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-style: normal;
+    font-weight: 400;
 }
 
 a {
     color: inherit;
+
     font-family: inherit;
     text-decoration: none;
 }
@@ -45,8 +48,11 @@ button {
 .app-login {
     display: grid;
     place-items: center;
+
     min-height: 100vh;
+
     padding: 20px;
+
     background: #0a0a0a;
     color: #fafafa;
 }
@@ -54,23 +60,28 @@ button {
 .form {
     display: flex;
     flex-direction: column;
-    max-width: 480px;
+
     width: 100%;
+    max-width: 480px;
+
     padding: 24px;
     gap: 20px;
-    border-radius: 24px;
+
     border: 1px solid hsla(0, 0%, 98%, 0.200);
+    border-radius: 24px;
 }
 
 .form-header {
     display: flex;
     flex-direction: column;
-    gap: 6px;
+
     margin-bottom: 6px;
+    gap: 6px;
 }
 
 .form-header p {
     color: #a3a3a3;
+
     font-size: 16px;
 }
 
@@ -84,31 +95,37 @@ label {
 }
 
 label span {
-    font-size: 14px;
-    color: #7a7a7a;
     margin-left: 2px;
+
+    color: #7a7a7a;
+
+    font-size: 14px;
 }
 
 .label-group {
     display: flex;
-    justify-content: start;
     align-items: center;
+    justify-content: flex-start;
+
     gap: 6px;
 }
 
 .label-icon {
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
 }
 
 .form-group input {
-    border-radius: 12px;
-    padding: 14px;
     margin-top: 8px;
+    padding: 14px;
+
     border: 1px solid hsla(0, 0%, 98%, 0.100);
+    border-radius: 12px;
+
     background: #262626;
     color: #fafafa;
+
     font-family: inherit;
     font-size: 16px;
 }
@@ -119,13 +136,14 @@ label span {
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
     margin: 0;
+
+    -webkit-appearance: none;
 }
 
-input[type=number] {
-    -moz-appearance: textfield;
+input[type="number"] {
     appearance: textfield;
+    -moz-appearance: textfield;
 }
 
 input::placeholder {
@@ -133,25 +151,29 @@ input::placeholder {
 }
 
 input:focus {
-    outline: none;
     border: 1px solid #0071e3;
+    outline: none;
+
     transition: none;
 }
 
-
 .form button {
-    color: #fafafa;
     display: inline-flex;
     align-items: center;
     justify-content: center;
+
+    margin-top: 8px;
     padding: 14px 24px;
+
+    border: none;
+    border-radius: 12px;
+
+    background: #0066cc;
+    color: #fafafa;
+
     font-family: inherit;
     font-size: 16px;
-    letter-spacing: -0.01em;
-    margin-top: 8px;
-    border-radius: 12px;
-    border: none;
-    background: #0066cc;
+
     transition: background 0.2s ease, transform 0.1s ease;
 }
 
@@ -165,25 +187,39 @@ input:focus {
 
 /* Events */
 .app-events {
-    display: grid;
-    place-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
     min-height: 100vh;
+    max-width: 480px;
+
+    margin: 0 auto;
     padding: 20px;
+
     background: #0a0a0a;
     color: #fafafa;
 }
 
 .events-header {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
+
     width: 100%;
+
+    padding-bottom: 16px;
+
+    border-bottom: 1px solid hsla(0, 0%, 98%, 0.100);
 }
 
-.events-header-icon, .events-header-avatar {
+.events-header-icon,
+.events-header-avatar {
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+
     cursor: pointer;
 }
 
@@ -192,16 +228,94 @@ input:focus {
 }
 
 .events-header-icon a {
-    font-size: 20px;
+    font-size: 18px;
 }
 
 .events-header-avatar {
-    background: #2997ff;
-    border-radius: 555px;
     padding: 8px;
+
+    border-radius: 555px;
+
+    background: #2997ff;
 }
 
-/* Icon */
-.hgi-calendar-add-01, .hgi-user {
-    font-size: 32px;
+.hgi-calendar-add-01,
+.hgi-user {
+    font-size: 24px;
+}
+
+.events-cta-group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+
+    padding-top: 18px;
+    gap: 12px;
+}
+
+.events-cta-active,
+.events-cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex: 1;
+}
+
+.events-cta-active {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    flex: 1;
+
+    margin-top: 8px;
+    padding: 12px 22px;
+
+    border: none;
+    border-radius: 12px;
+
+    background: #0066cc;
+    color: #fafafa;
+
+    font-family: inherit;
+    font-size: 16px;
+
+    transition: 0.1s ease;
+}
+
+.events-cta-active:hover {
+    background: #2997ff;
+
+    transform: translateY(-2px);
+}
+
+.events-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    flex: 1;
+
+    margin-top: 8px;
+    padding: 12px 22px;
+
+    border: 1px solid hsla(0, 0%, 98%, 0.100);
+    border-radius: 12px;
+
+    background: transparent;
+    color: #fafafa;
+
+    font-family: inherit;
+    font-size: 16px;
+
+    transition: 0.1s ease;
+}
+
+.events-cta:hover {
+    border: 1px solid hsla(0, 0%, 98%, 0.200);
+
+    transform: translateY(-2px);
 }
