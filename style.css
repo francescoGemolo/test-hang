@@ -23,6 +23,7 @@ body {
 a {
     color: inherit;
     font-family: inherit;
+    text-decoration: none;
 }
 
 h1,
@@ -40,7 +41,8 @@ button {
     cursor: pointer;
 }
 
-.app {
+/* Login */
+.app-login {
     display: grid;
     place-items: center;
     min-height: 100vh;
@@ -159,4 +161,47 @@ input:focus {
 
 .form button:active {
     transform: scale(0.98);
+}
+
+/* Events */
+.app-events {
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    background: #0a0a0a;
+    color: #fafafa;
+}
+
+.events-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.events-header-icon, .events-header-avatar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.events-header-icon {
+    gap: 8px;
+}
+
+.events-header-icon a {
+    font-size: 20px;
+}
+
+.events-header-avatar {
+    background: #2997ff;
+    border-radius: 555px;
+    padding: 8px;
+}
+
+/* Icon */
+.hgi-calendar-add-01, .hgi-user {
+    font-size: 32px;
 }
