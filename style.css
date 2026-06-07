@@ -327,7 +327,9 @@ input:focus {
 .events-participants i {
     color: #fafafa;
     display: inline-flex;
-    font-size: 16px;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
     width: fit-content;
     background: #2997ff;
     padding: 6px;
