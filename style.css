@@ -289,10 +289,10 @@ input:focus {
 }
 
 .events-card-title {
-    font-size: 18px;
+    font-size: 17px;
     font-weight: 400;
     font-style: normal;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
 }
 
 .events-card-info {
