@@ -256,17 +256,81 @@ input:focus {
     justify-content: center;
     flex: 1;
     margin-top: 8px;
-    padding: 12px 22px;
+    padding: 10px 20px;
     border: 1px solid hsla(0, 0%, 98%, 0.100);
     border-radius: 12px;
     background: transparent;
     color: #fafafa;
     font-family: inherit;
-    font-size: 16px;
+    font-size: 14px;
     transition: 0.1s ease;
 }
 
 .events-cta:hover {
     border: 1px solid hsla(0, 0%, 98%, 0.200);
     transform: translateY(-2px);
+}
+
+.events-cards {
+    display: flex;
+    flex-direction: column;
+    padding-top: 32px;
+    gap: 18px;
+}
+
+.events-card {
+    display: flex;
+    flex-direction: column;
+    background: #262626;
+    padding: 16px;
+    border-radius: 12px;
+    border: 1px solid hsla(0, 0%, 98%, 0.100);
+    gap: 4px;
+}
+
+.events-card-title {
+    font-size: 18px;
+    font-weight: 400;
+    font-style: normal;
+    margin-bottom: 10px;
+}
+
+.events-card-info {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.events-card-info-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+}
+
+.events-card-info-group i,
+.events-card-info-group p {
+    font-size: 14px;
+    color: #a3a3a3;
+    margin: 0;
+}
+
+.events-participants {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    margin-top: 12px;
+    color: #7a7a7a;
+}
+
+.events-participants i {
+    color: #fafafa;
+    display: inline-flex;
+    font-size: 16px;
+    width: fit-content;
+    background: #2997ff;
+    padding: 6px;
+    border-radius: 555px;
+    cursor: pointer;
 }
