@@ -12,8 +12,8 @@
     --neutral-500: #737373;
     --neutral-700: #404040;
 
-    --border: hsla(0, 0%, 98%, 0.10);
-    --border-hover: hsla(0, 0%, 98%, 0.20);
+    --border: hsla(0, 0%, 98%, 0.100);
+    --border-hover: hsla(0, 0%, 98%, 0.200);
 
     --font: "Inter Tight", system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 
@@ -168,7 +168,7 @@ input::placeholder {
     margin-top: var(--gap-md);
     padding: var(--pad-btn);
     border: none;
-    border-radius: var(--radius-sm);
+    border-radius: var(--radius-full);
     background: var(--accent);
     color: var(--bg);
     font-family: var(--font);
@@ -201,7 +201,7 @@ input::placeholder {
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    padding-bottom: var(--text-base);
+    padding-bottom: var(--gap-lg);
     border-bottom: 1px solid var(--border);
 }
 
@@ -218,7 +218,7 @@ input::placeholder {
 }
 
 .events-header-icon a {
-    font-size: var(--text-lg);
+    font-size: var(--text-base);
 }
 
 .events-header-avatar {
@@ -258,7 +258,8 @@ input::placeholder {
 }
 
 .events-cta-active:hover {
-    background: var(--accent-hover);
+    background: var(--accent);
+    color: var(--bg);
     transform: translateY(-2px);
 }
 
@@ -297,6 +298,10 @@ input::placeholder {
     gap: var(--gap-xs);
 }
 
+.events-card:hover {
+    border: 1px solid var(--border-hover);
+}
+
 .events-card-title {
     font-size: var(--text-base);
     font-weight: 400;
@@ -331,16 +336,13 @@ input::placeholder {
     color: var(--neutral-500);
 }
 
-.events-participants i,
-.events-footer i {
-    color: var(--bg);
+.events-participants i {
+    color: var(--neutral-50);
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    background: var(--accent);
-    border-radius: var(--radius-full);
     cursor: pointer;
-    transition: background 0.2s ease, transform 0.1s ease;
+    transition: transform 0.2s ease;
 }
 
 .events-participants i {
@@ -348,9 +350,14 @@ input::placeholder {
     padding: var(--gap-sm);
 }
 
-.events-participants i:hover,
-.events-footer i:hover {
-    background: var(--accent-hover);
+.events-footer i {
+    background: var(--accent);
+    color: var(--bg);
+    border-radius: var(--radius-full);
+    padding: var(--gap-lg);
+}
+
+.events-participants i:hover {
     transform: scale(1.05);
 }
 
@@ -361,9 +368,4 @@ input::placeholder {
     width: 100%;
     padding-top: 48px;
     margin-top: auto;
-}
-
-.events-footer i {
-    font-size: 18px;
-    padding: var(--gap-lg);
 }
