@@ -161,7 +161,7 @@ input::placeholder {
     color: var(--neutral-500);
 }
 
-.form button {
+.form a {
     display: inline-flex;
     align-items: center;
     justify-content: center;
