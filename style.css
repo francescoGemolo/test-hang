@@ -214,7 +214,7 @@ input::placeholder {
 }
 
 .events-header-icon {
-    gap: var(--gap-md);
+    gap: var(--gap-sm);
 }
 
 .events-header-icon a {
