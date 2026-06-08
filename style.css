@@ -40,12 +40,12 @@ button {
     cursor: pointer;
 }
 
+/* Login */
 .app-login {
     display: grid;
     place-items: center;
     min-height: 100vh;
     padding: 20px;
-    background: #0a0a0a;
     color: #fafafa;
 }
 
@@ -108,7 +108,7 @@ label span {
     color: #fafafa;
     font-family: inherit;
     font-size: 16px;
-    transition: 0.2s ease;
+    transition: border 0.2s ease;
 }
 
 .form-group input:hover,
@@ -155,7 +155,6 @@ input::placeholder {
     max-width: 480px;
     margin: 0 auto;
     padding: 48px 20px;
-    background: #0a0a0a;
     color: #fafafa;
 }
 
@@ -186,13 +185,8 @@ input::placeholder {
 
 .events-header-avatar {
     padding: 8px;
-    border-radius: 555px;
+    border-radius: 50%;
     background: #2997ff;
-}
-
-.hgi-calendar-add-01,
-.hgi-user {
-    font-size: 24px;
 }
 
 .events-cta-group {
@@ -206,26 +200,22 @@ input::placeholder {
 
 .events-cta-active,
 .events-cta {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex: 1;
-}
-
-.events-cta-active {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     flex: 1;
     margin-top: 8px;
+    border-radius: 12px;
+    font-family: inherit;
+    color: #fafafa;
+    transition: background 0.2s ease, border 0.2s ease, transform 0.1s ease;
+}
+
+.events-cta-active {
     padding: 12px 22px;
     border: none;
-    border-radius: 12px;
     background: #0066cc;
-    color: #fafafa;
-    font-family: inherit;
     font-size: 16px;
-    transition: 0.1s ease;
 }
 
 .events-cta-active:hover {
@@ -233,24 +223,20 @@ input::placeholder {
     transform: translateY(-2px);
 }
 
+.events-cta-active:active,
+.events-cta:active {
+    transform: scale(0.98);
+}
+
 .events-cta {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    flex: 1;
-    margin-top: 8px;
     padding: 10px 20px;
     border: 1px solid hsla(0, 0%, 98%, 0.100);
-    border-radius: 12px;
     background: transparent;
-    color: #fafafa;
-    font-family: inherit;
     font-size: 14px;
-    transition: 0.1s ease;
 }
 
 .events-cta:hover {
-    border: 1px solid hsla(0, 0%, 98%, 0.200);
+    border-color: hsla(0, 0%, 98%, 0.200);
     transform: translateY(-2px);
 }
 
@@ -269,13 +255,11 @@ input::placeholder {
     border-radius: 12px;
     border: 1px solid hsla(0, 0%, 98%, 0.100);
     gap: 4px;
-    flex: 1;
 }
 
 .events-card-title {
     font-size: 17px;
     font-weight: 400;
-    font-style: normal;
     margin-bottom: 8px;
 }
 
@@ -296,7 +280,6 @@ input::placeholder {
 .events-card-info-group p {
     font-size: 14px;
     color: #a3a3a3;
-    margin: 0;
 }
 
 .events-participants {
@@ -308,17 +291,27 @@ input::placeholder {
     color: #7a7a7a;
 }
 
-.events-participants i {
+.events-participants i,
+.events-footer i {
     color: #fafafa;
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    font-size: 18px;
-    width: fit-content;
     background: #2997ff;
-    padding: 6px;
-    border-radius: 555px;
+    border-radius: 50%;
     cursor: pointer;
+    transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.events-participants i {
+    font-size: 18px;
+    padding: 6px;
+}
+
+.events-participants i:hover,
+.events-footer i:hover {
+    background: #0066cc;
+    transform: scale(1.05);
 }
 
 .events-footer {
@@ -331,13 +324,6 @@ input::placeholder {
 }
 
 .events-footer i {
-    color: #fafafa;
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    width: fit-content;
-    background: #2997ff;
+    font-size: 24px;
     padding: 12px;
-    border-radius: 555px;
-    cursor: pointer;
 }
