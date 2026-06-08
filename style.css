@@ -244,13 +244,13 @@ input::placeholder {
     justify-content: center;
     flex: 1;
     margin-top: var(--gap-md);
-    border-radius: var(--radius-sm);
+    border-radius: var(--radius-full);
     font-family: var(--font);
     transition: background 0.2s ease, border 0.2s ease, transform 0.1s ease;
 }
 
 .events-cta-active {
-    padding: var(--gap-lg) 22px;
+    padding: 10px var(--gap-2xl);
     border: 1px solid var(--accent);
     background: transparent;
     color: var(--neutral-50);
