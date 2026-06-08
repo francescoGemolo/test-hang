@@ -108,6 +108,7 @@ label span {
     color: #fafafa;
     font-family: inherit;
     font-size: 16px;
+    transition: 0.2s ease;
 }
 
 .form-group input:hover,
