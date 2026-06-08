@@ -348,10 +348,12 @@ input::placeholder {
 .events-participants i {
     font-size: var(--text-lg);
     padding: var(--gap-sm);
+    margin-top: var(--gap-sm);
 }
 
 .events-footer i {
     background: var(--accent);
+    font-size: 22px;
     color: var(--bg);
     border-radius: var(--radius-full);
     padding: var(--gap-lg);
