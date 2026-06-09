@@ -1,0 +1,124 @@
+.app-create-event {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 48px var(--gap-2xl);
+}
+
+.header-back {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding-bottom: var(--gap-lg);
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 30px;
+}
+
+.header-back h1 {
+    font-size: var(--text-lg);
+    font-weight: 600;
+}
+
+.btn-icon-back {
+    font-size: 22px;
+    color: var(--neutral-400);
+    transition: color 0.2s ease;
+}
+
+.btn-icon-back:hover {
+    color: var(--neutral-50);
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-xl);
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-md);
+}
+
+.label-group {
+    display: flex;
+    align-items: center;
+    gap: var(--gap-md);
+}
+
+.label-icon {
+    display: flex;
+    align-items: center;
+    color: var(--neutral-400);
+    font-size: var(--text-lg);
+}
+
+label {
+    font-size: var(--text-sm);
+    color: var(--neutral-400);
+}
+
+label span {
+    color: var(--neutral-500);
+    font-size: 12px;
+}
+
+.form-row-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--gap-xl);
+}
+
+input {
+    width: 100%;
+    padding: var(--pad-input);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--neutral-50);
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+input:focus {
+    border-color: var(--accent);
+}
+
+input::placeholder {
+    color: var(--neutral-500);
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="time"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+    cursor: pointer;
+}
+
+.form-actions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-lg);
+    margin-top: var(--gap-xl);
+}
+
+.form-actions .btn-primary {
+    width: 100%;
+}
+
+.btn-secondary-cancel {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--pad-btn-compact);
+    color: var(--neutral-400);
+    font-size: var(--text-sm);
+    transition: color 0.2s ease;
+}
+
+.btn-secondary-cancel:hover {
+    color: var(--neutral-50);
+}

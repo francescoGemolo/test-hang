@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://use.hugeicons.com/font/icons.css">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="css/create-event.css">
+    <title>Crea Evento</title>
+</head>
+
+<body>
+    <div class="app-create-event">
+        <header class="header-back">
+            <a href="events.html" class="btn-icon-back" aria-label="Torna agli eventi">
+                <i class="hgi hgi-stroke hgi-rounded hgi-arrow-left-01"></i>
+            </a>
+            <h1>Nuovo Evento</h1>
+            <div style="width: 36px;"></div>
+        </header>
+
+        <form class="form" onsubmit="return false;">
+
+            <div class="form-group">
+                <div class="label-group">
+                    <div class="label-icon">
+                        <i class="hgi hgi-stroke hgi-rounded hgi-note-01"></i>
+                    </div>
+                    <label for="event-title">Titolo dell'evento *</label>
+                </div>
+                <input type="text" id="event-title" placeholder="es. Aperitivo Serale" required>
+            </div>
+
+            <div class="form-row-grid">
+                <div class="form-group">
+                    <div class="label-group">
+                        <div class="label-icon">
+                            <i class="hgi hgi-stroke hgi-rounded hgi-calendar-05"></i>
+                        </div>
+                        <label for="event-date">Data *</label>
+                    </div>
+                    <input type="date" id="event-date" required>
+                </div>
+
+                <div class="form-group">
+                    <div class="label-group">
+                        <div class="label-icon">
+                            <i class="hgi hgi-stroke hgi-rounded hgi-clock-01"></i>
+                        </div>
+                        <label for="event-time">Ora *</label>
+                    </div>
+                    <input type="time" id="event-time" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="label-group">
+                    <div class="label-icon">
+                        <i class="hgi hgi-stroke hgi-rounded hgi-pin-location-01"></i>
+                    </div>
+                    <label for="event-location">Luogo *</label>
+                </div>
+                <input type="text" id="event-location" placeholder="es. Bar Mediterraneo o link Maps" required>
+            </div>
+
+            <div class="form-group">
+                <div class="label-group">
+                    <div class="label-icon">
+                        <i class="hgi hgi-stroke hgi-rounded hgi-user-group"></i>
+                    </div>
+                    <label for="event-max-participants">Partecipanti max <span>(opzionale)</span></label>
+                </div>
+                <input type="number" id="event-max-participants" inputmode="numeric" min="2" placeholder="es. 10">
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn-primary">Crea Evento</button>
+                <a href="events.html" class="btn-secondary-cancel">Annulla</a>
+            </div>
+
+        </form>
+    </div>
+</body>
+
+</html>
