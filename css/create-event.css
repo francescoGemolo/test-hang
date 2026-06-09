@@ -7,7 +7,6 @@
     padding: 48px var(--gap-2xl);
 }
 
-
 .header-create-event {
     position: relative;
     display: flex;
@@ -76,9 +75,13 @@ label span {
 }
 
 .form-row-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    flex-wrap: wrap;
     gap: var(--gap-xl);
+}
+
+.form-row-grid .form-group {
+    flex: 1 1 180px;
 }
 
 input {
@@ -135,11 +138,4 @@ input::-webkit-inner-spin-button {
 
 .btn-secondary-cancel:hover {
     color: var(--neutral-50);
-}
-
-@media (max-width: 400px) {
-    .form-row-grid {
-        grid-template-columns: 1fr;
-        gap: var(--gap-xl);
-    }
 }
