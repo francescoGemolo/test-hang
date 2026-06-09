@@ -97,6 +97,10 @@
     gap: var(--gap-md);
 }
 
+.card-footer a {
+    color: var(--neutral-50);
+}
+
 .card-footer .btn-secondary,
 .card-footer .btn-outline {
     width: 100%;
