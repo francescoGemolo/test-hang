@@ -39,23 +39,6 @@
     color: var(--neutral-50);
 }
 
-.form-row-wrapper {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--gap-xl);
-    width: 100%;
-}
-
-.form-row-wrapper .form-group {
-    min-width: 0;
-}
-
-.form-row-wrapper input[type="date"],
-.form-row-wrapper input[type="time"] {
-    width: 100%;
-    min-width: 0;
-}
-
 .form-actions {
     display: flex;
     flex-direction: column;
