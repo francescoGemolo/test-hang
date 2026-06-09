@@ -19,11 +19,12 @@
 .header-logo {
     display: flex;
     align-items: center;
-    gap: var(--gap-sm);
+    gap: var(--gap-xs);
 }
 
-.header-logo a {
-    font-size: var(--text-base);
+.header-logo i,
+a {
+    font-size: var(--text-lg);
 }
 
 .filters {
