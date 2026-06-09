@@ -39,80 +39,15 @@
     color: var(--neutral-50);
 }
 
-.form {
+.form-row-wrapper {
     display: flex;
-    flex-direction: column;
     gap: var(--gap-xl);
-}
-
-.form-group {
-    display: flex;
-    flex-direction: column;
-    gap: var(--gap-md);
-}
-
-.label-group {
-    display: flex;
-    align-items: center;
-    gap: var(--gap-md);
-}
-
-.label-icon {
-    display: flex;
-    align-items: center;
-    color: var(--neutral-400);
-    font-size: var(--text-lg);
-}
-
-label {
-    font-size: var(--text-sm);
-    color: var(--neutral-400);
-}
-
-label span {
-    color: var(--neutral-500);
-    font-size: 12px;
-}
-
-.form-row-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--gap-xl);
-}
-
-.form-row-grid .form-group {
-    flex: 1 1 180px;
-}
-
-input {
     width: 100%;
-    padding: var(--pad-input);
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-sm);
-    color: var(--neutral-50);
-    outline: none;
-    transition: border-color 0.2s ease;
 }
 
-input:focus {
-    border-color: var(--accent);
-}
-
-input::placeholder {
-    color: var(--neutral-500);
-}
-
-input[type="date"]::-webkit-calendar-picker-indicator,
-input[type="time"]::-webkit-calendar-picker-indicator {
-    filter: invert(1);
-    cursor: pointer;
-}
-
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+.form-row-wrapper .form-group {
+    flex: 1;
+    min-width: 0;
 }
 
 .form-actions {
