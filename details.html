@@ -1,120 +1,106 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://use.hugeicons.com/font/icons.css">
-    <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="css/details.css">
+    <title>Dettagli Evento</title>
 </head>
 
 <body>
-
     <div class="app-details">
-        <div class="details-header">
-            <i class="hgi hgi-stroke hgi-rounded hgi-arrow-left-02"></i>
-        </div>
-        <div class="details-wrapper">
-            <h1 class="detail-title">Aperitivo Serale</h1>
-            <div class="details-card">
-                <div class="details-info">
+        <header class="header-back">
+            <a href="events.html" class="btn-back" aria-label="Torna agli eventi">
+                <i class="hgi hgi-stroke hgi-rounded hgi-arrow-left-02"></i>
+            </a>
+        </header>
 
-                    <div class="details-info-group">
+        <main class="wrapper">
+            <h1 class="page-title">Aperitivo Serale</h1>
+
+            <article class="info-card">
+                <div class="info-list">
+
+                    <div class="info-item">
                         <i class="hgi hgi-stroke hgi-rounded hgi-calendar-05"></i>
                         <p>Sab. 12 luglio</p>
                     </div>
-                    <div class="details-info-group">
+
+                    <div class="info-item">
                         <i class="hgi hgi-stroke hgi-rounded hgi-clock-01"></i>
                         <p>19:30</p>
                     </div>
 
-                    <div class="details-info-group">
+                    <div class="info-item">
                         <i class="hgi hgi-stroke hgi-rounded hgi-pin-location-01"></i>
                         <p>Bar Mediterraneo</p>
                     </div>
 
-                    <div class="details-info-group">
+                    <div class="info-item">
                         <i class="hgi hgi-stroke hgi-rounded hgi-user-group"></i>
                         <p>2 / 10 partecipanti</p>
                     </div>
 
                 </div>
 
-                <div class="details-description">
-                    <p>
-                        Apericucciole con le cucciole.
-                    </p>
+                <div class="description">
+                    <p>Apericucciole con le cucciole.</p>
                 </div>
-            </div>
-            <button class="details-btn">Partecipa</button>
+            </article>
 
-            <!-- CHAT -->
-            <div class="details-participants">
-                <h2 class="details-participants-title">
-                    Partecipanti (2)
-                </h2>
+            <button class="btn-primary">Partecipa</button>
 
-                <div class="details-participant">
+            <section class="participants-section">
+                <h2 class="section-title">Partecipanti (2)</h2>
 
-                    <div class="details-participant-avatar">
-                        M
-                    </div>
+                <article class="participant">
+                    <div class="avatar-circle">M</div>
 
-                    <div class="details-participant-content">
-
-                        <div class="details-participant-header">
+                    <div class="participant-content">
+                        <div class="participant-header">
                             <h3>Marco</h3>
                             <p>- Organizzatore</p>
                         </div>
 
-                        <div class="details-participant-links">
-                            <a href="#" class="details-link details-link-whatsapp">
+                        <div class="participant-links">
+                            <a href="#" class="badge-link badge-whatsapp">
                                 <i class="hgi hgi-stroke hgi-rounded hgi-whatsapp"></i>
                                 +39 333 1234567
                             </a>
-
-                            <a href="#" class="details-link details-link-instagram">
+                            <a href="#" class="badge-link badge-instagram">
                                 <i class="hgi hgi-stroke hgi-rounded hgi-instagram"></i>
                                 marco_roma
                             </a>
                         </div>
-
                     </div>
+                </article>
 
-                </div>
+                <article class="participant">
+                    <div class="avatar-circle">G</div>
 
-                <div class="details-participant">
-
-                    <div class="details-participant-avatar">
-                        G
-                    </div>
-
-                    <div class="details-participant-content">
-
-                        <div class="details-participant-header">
+                    <div class="participant-content">
+                        <div class="participant-header">
                             <h3>Giulia</h3>
                         </div>
 
-                        <div class="details-participant-links">
-                            <a href="#" class="details-link details-link-instagram">
+                        <div class="participant-links">
+                            <a href="#" class="badge-link badge-instagram">
                                 <i class="hgi hgi-stroke hgi-rounded hgi-instagram"></i>
                                 giulia.foto
                             </a>
-
-                            <a href="#" class="details-link details-link-telegram">
+                            <a href="#" class="badge-link badge-telegram">
                                 <i class="hgi hgi-stroke hgi-rounded hgi-telegram"></i>
                                 giulia_tg
                             </a>
                         </div>
-
                     </div>
-
-                </div>
-            </div>
-        </div>
+                </article>
+            </section>
+        </main>
     </div>
-
 </body>
 
 </html>

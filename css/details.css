@@ -1,0 +1,128 @@
+.app-details {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 48px var(--gap-2xl);
+}
+
+.header-back {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-bottom: var(--gap-2xl);
+}
+
+.btn-back i {
+    background: var(--neutral-700);
+    border: 1px solid var(--border);
+    color: var(--neutral-50);
+    padding: var(--gap-md);
+    font-size: 22px;
+    border-radius: var(--radius-sm);
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.page-title {
+    font-size: 30px;
+    padding-bottom: var(--gap-xl);
+}
+
+.info-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-lg);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: var(--pad-card);
+}
+
+.info-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-md);
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: var(--gap-sm);
+}
+
+.info-item i,
+.info-item p {
+    font-size: var(--text-sm);
+    color: var(--neutral-50);
+}
+
+.description {
+    padding-top: var(--gap-md);
+    border-top: 1px solid var(--border);
+}
+
+.description p {
+    font-size: var(--text-sm);
+    color: var(--neutral-400);
+}
+
+.wrapper>.btn-primary {
+    margin-top: var(--gap-2xl);
+    margin-bottom: var(--gap-sm);
+}
+
+.participants-section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-lg);
+    margin-top: var(--gap-2xl);
+}
+
+.section-title {
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.participant {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--gap-lg);
+    padding-bottom: var(--gap-xl);
+    border-bottom: 1px solid var(--border);
+}
+
+.participant-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-sm);
+    width: 100%;
+}
+
+.participant-header {
+    display: flex;
+    align-items: center;
+    gap: var(--gap-xs);
+}
+
+.participant-header h3 {
+    font-size: var(--text-base);
+    font-weight: 500;
+}
+
+.participant-header p {
+    font-size: var(--text-sm);
+    color: var(--neutral-500);
+}
+
+.participant-links {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    flex-wrap: wrap;
+    gap: var(--gap-sm);
+}

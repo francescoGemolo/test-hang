@@ -5,57 +5,63 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://use.hugeicons.com/font/icons.css">
-    <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="css/login.css">
+    <title>Login</title>
 </head>
 
 <body>
     <div class="app-login">
-        <div class="form">
+        <form class="form" onsubmit="return false;">
             <div class="form-header">
                 <h1>Ciao! 👋🏻</h1>
                 <p>Scegli un nickname e aggiungi i tuoi contatti (visibili solo ai partecipanti dei tuoi eventi).</p>
             </div>
+
             <div class="form-group">
                 <div class="label-group">
                     <div class="label-icon">
                         <i class="hgi hgi-stroke hgi-rounded hgi-user"></i>
                     </div>
-                    <label>Nickname *</label>
+                    <label for="nickname">Nickname *</label>
                 </div>
-                <input type="text" placeholder="es. Marco_92" required maxlength="15">
+                <input type="text" id="nickname" placeholder="es. Marco_92" required maxlength="15">
             </div>
+
             <div class="form-group">
                 <div class="label-group">
                     <div class="label-icon">
                         <i class="hgi hgi-stroke hgi-rounded hgi-whatsapp"></i>
                     </div>
-                    <label>Whatsapp <span>(opzionale)</span></label>
+                    <label for="whatsapp">Whatsapp <span>(opzionale)</span></label>
                 </div>
-                <input type="text" inputmode="numeric" pattern="[0-9]" placeholder="328 333 ...">
+                <input type="text" id="whatsapp" inputmode="numeric" pattern="[0-9]*" placeholder="328 333 ...">
             </div>
+
             <div class="form-group">
                 <div class="label-group">
                     <div class="label-icon">
                         <i class="hgi hgi-stroke hgi-rounded hgi-instagram"></i>
                     </div>
-                    <label>Instagram <span>(opzionale)</span></label>
+                    <label for="instagram">Instagram <span>(opzionale)</span></label>
                 </div>
-                <input type="text" placeholder="@username">
+                <input type="text" id="instagram" placeholder="@username">
             </div>
+
             <div class="form-group">
                 <div class="label-group">
                     <div class="label-icon">
                         <i class="hgi hgi-stroke hgi-rounded hgi-telegram"></i>
                     </div>
-                    <label>Telegram <span>(opzionale)</span></label>
+                    <label for="telegram">Telegram <span>(opzionale)</span></label>
                 </div>
-                <input type="text" placeholder="@username">
+                <input type="text" id="telegram" placeholder="@username">
             </div>
-            <a href="events.html" class="btn">
+
+            <a href="events.html" class="btn-primary">
                 Entra
             </a>
-        </div>
+        </form>
     </div>
 </body>
 

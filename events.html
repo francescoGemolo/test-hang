@@ -5,79 +5,89 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://use.hugeicons.com/font/icons.css">
-    <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="css/events.css">
+    <title>Eventi</title>
 </head>
 
 <body>
     <div class="app-events">
-        <div class="events-header">
-            <div class="events-header-icon">
+        <header class="header">
+            <div class="header-logo">
                 <i class="hgi hgi-stroke hgi-rounded hgi-calendar-add-01"></i>
                 <a href="events.html">Eventi</a>
             </div>
-            <div class="events-header-avatar">
+            <div class="avatar-accent">
                 <i class="hgi hgi-stroke hgi-rounded hgi-user"></i>
             </div>
-        </div>
-        <div class="events-cta-group">
-            <button class="btn events-cta-active">Tutti</button>
-            <button class="btn events-cta">Partecipo</button>
-            <button class="btn events-cta">Miei</button>
-        </div>
-        <div class="events-cards">
-            <!-- Card - 1 -->
-            <div class="events-card">
-                <h2 class="events-card-title">Aperitivo Serale</h2>
-                <div class="events-card-info">
-                    <div class="events-card-info-group">
+        </header>
+
+        <nav class="filters">
+            <button class="btn-outline">Tutti</button>
+            <button class="btn-secondary">Partecipo</button>
+            <button class="btn-secondary">Miei</button>
+        </nav>
+
+
+        <main class="card-list">
+            <article class="card">
+                <h2 class="card-title">Aperitivo Serale</h2>
+
+                <div class="card-info">
+                    <div class="info-group">
                         <i class="hgi hgi-stroke hgi-rounded hgi-calendar-05"></i>
                         <p>Sab. 12 luglio</p>
                     </div>
-                    <div class="events-card-info-group">
+                    <div class="info-group">
                         <i class="hgi hgi-stroke hgi-rounded hgi-clock-01"></i>
                         <p>19.30</p>
                     </div>
-                    <div class="events-card-info-group">
+                    <div class="info-group">
                         <i class="hgi hgi-stroke hgi-rounded hgi-pin-location-01"></i>
                         <p>Bar Mediterraneo</p>
                     </div>
                 </div>
-                <div class="events-participants">
-                    2 / 10 partecipanti
-                    <!-- Icon -->
-                    <a href="details.html">
+
+                <div class="card-footer">
+                    <span>2 / 10 partecipanti</span>
+                    <a href="details.html" class="btn-icon-action" aria-label="Vedi dettagli evento">
                         <i class="hgi hgi-stroke hgi-rounded hgi-arrow-right-01"></i>
                     </a>
                 </div>
-            </div>
-            <!-- Card - 2 -->
-            <div class="events-card">
-                <h2 class="events-card-title">Danza Puzzo</h2>
-                <div class="events-card-info">
-                    <div class="events-card-info-group">
+            </article>
+
+            <article class="card">
+                <h2 class="card-title">Danza Puzzo</h2>
+
+                <div class="card-info">
+                    <div class="info-group">
                         <i class="hgi hgi-stroke hgi-rounded hgi-calendar-05"></i>
                         <p>Mer. 18 luglio</p>
                     </div>
-                    <div class="events-card-info-group">
+                    <div class="info-group">
                         <i class="hgi hgi-stroke hgi-rounded hgi-clock-01"></i>
                         <p>23.30</p>
                     </div>
-                    <div class="events-card-info-group">
+                    <div class="info-group">
                         <i class="hgi hgi-stroke hgi-rounded hgi-pin-location-01"></i>
                         <p>Disco Sole</p>
                     </div>
                 </div>
-                <div class="events-participants">
-                    2 / 8 partecipanti
-                    <!-- Icon -->
-                    <i class="hgi hgi-stroke hgi-rounded hgi-arrow-right-01"></i>
+
+                <div class="card-footer">
+                    <span>2 / 8 partecipanti</span>
+                    <a href="details.html" class="btn-icon-action" aria-label="Vedi dettagli evento">
+                        <i class="hgi hgi-stroke hgi-rounded hgi-arrow-right-01"></i>
+                    </a>
                 </div>
-            </div>
-        </div>
-        <div class="events-footer">
-            <i class="hgi hgi-stroke hgi-rounded hgi-add-01"></i>
-        </div>
+            </article>
+        </main>
+
+        <footer class="footer">
+            <button class="btn-icon-action" aria-label="Aggiungi nuovo evento">
+                <i class="hgi hgi-stroke hgi-rounded hgi-add-01"></i>
+            </button>
+        </footer>
     </div>
 </body>
 

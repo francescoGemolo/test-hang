@@ -1,0 +1,113 @@
+.app-events {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 48px var(--gap-2xl);
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding-bottom: var(--gap-lg);
+    border-bottom: 1px solid var(--border);
+}
+
+.header-logo {
+    display: flex;
+    align-items: center;
+    gap: var(--gap-sm);
+}
+
+.header-logo a {
+    font-size: var(--text-base);
+}
+
+.filters {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding-top: var(--gap-lg);
+    gap: var(--gap-lg);
+}
+
+.filters button {
+    margin-top: var(--gap-md);
+}
+
+.card-list {
+    display: flex;
+    flex-direction: column;
+    padding-top: 30px;
+    gap: var(--gap-xl);
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    background: var(--surface);
+    padding: var(--pad-card);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+    gap: var(--gap-xs);
+}
+
+.card:hover {
+    border: 1px solid var(--border-hover);
+}
+
+.card-title {
+    font-size: var(--text-base);
+    font-weight: 400;
+    margin-bottom: var(--gap-md);
+}
+
+.card-info {
+    display: flex;
+    align-items: center;
+    gap: var(--gap-xl);
+    flex-wrap: wrap;
+}
+
+.info-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--gap-xs);
+}
+
+.info-group i,
+.info-group p {
+    font-size: var(--text-sm);
+    color: var(--neutral-400);
+}
+
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: var(--text-sm);
+    margin-top: var(--gap-lg);
+    color: var(--neutral-500);
+}
+
+.footer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+    padding-top: 48px;
+    margin-top: auto;
+}
+
+.footer .btn-icon-action i {
+    background: var(--accent);
+    font-size: 22px;
+    color: var(--bg);
+    border-radius: var(--radius-full);
+    padding: var(--gap-lg);
+}
