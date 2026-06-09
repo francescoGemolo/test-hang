@@ -15,7 +15,7 @@
 }
 
 .btn-back i {
-    background: var(--neutral-700);
+    background: var(--surface);
     border: 1px solid var(--border);
     color: var(--neutral-50);
     padding: var(--gap-md);
