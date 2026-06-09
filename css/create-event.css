@@ -50,6 +50,12 @@
     min-width: 0;
 }
 
+.form-row-wrapper input[type="date"],
+.form-row-wrapper input[type="time"] {
+    width: 100%;
+    min-width: 0;
+}
+
 .form-actions {
     display: flex;
     flex-direction: column;
