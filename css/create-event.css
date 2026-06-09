@@ -40,13 +40,13 @@
 }
 
 .form-row-wrapper {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: var(--gap-xl);
     width: 100%;
 }
 
 .form-row-wrapper .form-group {
-    flex: 1;
     min-width: 0;
 }
 
