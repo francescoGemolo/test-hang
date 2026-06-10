@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&display=swap');
 
 :root {
+    /* Colors */
     --accent: #a3e635;
     --accent-hover: #bef264;
     --bg: #0a0a0a;
@@ -15,15 +16,18 @@
     --border: hsla(0, 0%, 98%, 0.200);
     --border-hover: hsla(0, 0%, 98%, 0.300);
 
+    /* Typography */
     --font: "Inter Tight", system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     --text-sm: 14px;
     --text-base: 16px;
     --text-lg: 18px;
 
+    /* Radius */
     --radius-sm: 12px;
     --radius-lg: 24px;
     --radius-full: 9999px;
 
+    /* Spacing — granular */
     --gap-xs: 4px;
     --gap-sm: 6px;
     --gap-md: 8px;
@@ -31,6 +35,12 @@
     --gap-xl: 18px;
     --gap-2xl: 20px;
 
+    /* Spacing — layout */
+    --space-page-x: var(--gap-2xl);
+    --space-page-top: 48px;
+    --space-section: 40px;
+
+    /* Padding presets */
     --pad-input: 14px;
     --pad-btn: 14px 24px;
     --pad-btn-compact: 10px 20px;
@@ -38,6 +48,7 @@
     --pad-badge: 6px 12px;
 }
 
+/* Reset */
 *,
 *::before,
 *::after {
@@ -59,14 +70,6 @@ body {
     -webkit-text-size-adjust: 100%;
 }
 
-a {
-    color: inherit;
-    font-family: inherit;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-}
-
 h1,
 h2,
 h3,
@@ -78,6 +81,14 @@ p {
     padding: 0;
 }
 
+a {
+    color: inherit;
+    font-family: inherit;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+}
+
 button {
     cursor: pointer;
     border: none;
@@ -87,6 +98,7 @@ button {
     padding: 0;
 }
 
+/* Forms */
 .form {
     display: flex;
     flex-direction: column;
@@ -141,6 +153,7 @@ label span {
     font-size: 12px;
 }
 
+/* Inputs */
 input {
     width: 100%;
     font-family: inherit;
@@ -165,13 +178,6 @@ input::placeholder {
     color: var(--neutral-500);
 }
 
-input[type="date"]::-webkit-calendar-picker-indicator,
-input[type="time"]::-webkit-calendar-picker-indicator {
-    filter: invert(1);
-    cursor: pointer;
-    opacity: 0.7;
-}
-
 input[type="date"],
 input[type="time"] {
     font-size: var(--text-base);
@@ -180,6 +186,13 @@ input[type="time"] {
     line-height: normal;
     display: flex;
     align-items: center;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="time"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+    cursor: pointer;
+    opacity: 0.7;
 }
 
 input[type="date"]::-webkit-date-and-time-value,
@@ -195,6 +208,7 @@ input::-webkit-inner-spin-button {
     margin: 0;
 }
 
+/* Buttons */
 .btn-primary {
     display: inline-flex;
     align-items: center;
@@ -207,18 +221,12 @@ input::-webkit-inner-spin-button {
     font-family: var(--font);
     font-size: var(--text-base);
     font-weight: 600;
-    transition: background 0.2s ease, transform 0.1s ease;
     cursor: pointer;
+    transition: background 0.2s ease, transform 0.1s ease;
 }
 
 .btn-primary:hover {
     background: var(--accent-hover);
-}
-
-.btn-primary:active,
-.btn-outline:active,
-.btn-secondary:active {
-    transform: scale(0.98);
 }
 
 .btn-outline {
@@ -258,19 +266,10 @@ input::-webkit-inner-spin-button {
     transform: translateY(-2px);
 }
 
-.avatar-circle {
-    width: 36px;
-    height: 36px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    font-weight: 600;
-    font-size: var(--text-base);
-    color: var(--accent);
-    flex-shrink: 0;
+.btn-primary:active,
+.btn-outline:active,
+.btn-secondary:active {
+    transform: scale(0.98);
 }
 
 .btn-icon-action {
@@ -287,6 +286,23 @@ input::-webkit-inner-spin-button {
     transform: scale(1.05);
 }
 
+/* Avatar */
+.avatar-circle {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    font-weight: 600;
+    font-size: var(--text-base);
+    color: var(--accent);
+    flex-shrink: 0;
+}
+
+/* Badges */
 .badge-link {
     display: flex;
     align-items: center;

@@ -4,27 +4,26 @@
     min-height: 100vh;
     max-width: 480px;
     margin: 0 auto;
-    padding: 48px var(--gap-2xl);
+    padding: var(--space-page-top) var(--space-page-x);
 }
 
-.header-create-event {
+/* Reuses .header-back from details, extended here with a centered title */
+.header-back {
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
-    margin-bottom: 40px;
-    padding-bottom: 0;
-    border-bottom: none;
+    margin-bottom: var(--space-section);
 }
 
-.header-create-event h1 {
+.header-back h1 {
     font-size: 24px;
     font-weight: 700;
     text-align: center;
 }
 
-.btn-icon-back {
+.btn-back {
     position: absolute;
     left: 0;
     top: 50%;
@@ -34,9 +33,8 @@
     transition: opacity 0.2s ease;
 }
 
-.btn-icon-back:hover {
+.btn-back:hover {
     opacity: 0.8;
-    color: var(--neutral-50);
 }
 
 .form-actions {
@@ -50,7 +48,7 @@
     width: 100%;
 }
 
-.btn-secondary-cancel {
+.btn-cancel {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -60,6 +58,6 @@
     transition: color 0.2s ease;
 }
 
-.btn-secondary-cancel:hover {
+.btn-cancel:hover {
     color: var(--neutral-50);
 }
