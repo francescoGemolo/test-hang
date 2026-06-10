@@ -11,8 +11,9 @@
     --neutral-500: #737373;
     --neutral-700: #404040;
 
-    --border: hsla(0, 0%, 98%, 0.100);
-    --border-hover: hsla(0, 0%, 98%, 0.200);
+    --border-ghost: hsla(0, 0%, 98%, 0.100);
+    --border: hsla(0, 0%, 98%, 0.200);
+    --border-hover: hsla(0, 0%, 98%, 0.300);
 
     --font: "Inter Tight", system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     --text-sm: 14px;
@@ -188,16 +189,16 @@ input::-webkit-inner-spin-button {
     align-items: center;
     justify-content: center;
     padding: var(--pad-btn-compact);
-    border: 1px solid var(--accent);
+    border: 1px solid var(--accent-hover);
     border-radius: var(--radius-full);
-    background: transparent;
-    color: var(--neutral-50);
+    background: var(--accent);
+    color: var(--bg);
     font-size: var(--text-base);
     transition: background 0.2s ease, color 0.2s ease, transform 0.1s ease;
 }
 
 .btn-outline:hover {
-    background: var(--accent);
+    background: var(--accent-hover);
     color: var(--bg);
     transform: translateY(-2px);
 }
