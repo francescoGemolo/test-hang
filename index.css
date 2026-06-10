@@ -105,6 +105,10 @@ button {
     gap: var(--gap-md);
 }
 
+.label-group span {
+    font-size: var(--text-sm);
+}
+
 .label-icon {
     display: flex;
     align-items: center;
