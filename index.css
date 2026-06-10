@@ -57,7 +57,6 @@ body {
     font-family: var(--font);
     font-weight: 400;
     -webkit-text-size-adjust: 100%;
-    /* Previene il ridimensionamento automatico del testo su iOS */
 }
 
 a {
@@ -88,7 +87,6 @@ button {
     padding: 0;
 }
 
-/* --- FORM LAYOUT --- */
 .form {
     display: flex;
     flex-direction: column;
@@ -96,18 +94,15 @@ button {
     width: 100%;
 }
 
-/* Nuova riga orizzontale per Data e Ora */
 .form-row {
     display: flex;
     gap: var(--gap-lg);
-    /* Spazio ottimizzato tra i due campi affiancati */
     width: 100%;
 }
 
 .form-row .form-group {
     flex: 1;
     min-width: 0;
-    /* Forza il flexbox a non far strabordare gli input */
 }
 
 .form-group {
@@ -146,7 +141,6 @@ label span {
     font-size: 12px;
 }
 
-/* --- INPUTS --- */
 input {
     width: 100%;
     font-family: inherit;
@@ -159,7 +153,6 @@ input {
     outline: none;
     transition: border-color 0.2s ease;
     -webkit-appearance: none;
-    /* Rimuove lo stile di default di iOS */
     appearance: none;
 }
 
@@ -172,28 +165,6 @@ input::placeholder {
     color: var(--neutral-500);
 }
 
-/* Fix specifici per campi Date e Time */
-input[type="date"],
-input[type="time"] {
-    min-width: 0;
-    min-height: 48px;
-    /* Assicura un'altezza touch-friendly minima costante */
-}
-
-/* Corregge il padding orizzontale solo dentro la riga affiancata per non stringere troppo il testo */
-.form-row input[type="date"],
-.form-row input[type="time"] {
-    padding-left: 10px;
-    padding-right: 10px;
-}
-
-/* Sistema il testo interno ai moduli date/time su iOS Safari */
-input::-webkit-date-and-time-value {
-    min-height: 1.5em;
-    text-align: left;
-}
-
-/* Icone dei selettori nativi */
 input[type="date"]::-webkit-calendar-picker-indicator,
 input[type="time"]::-webkit-calendar-picker-indicator {
     filter: invert(1);
@@ -207,7 +178,6 @@ input::-webkit-inner-spin-button {
     margin: 0;
 }
 
-/* --- BUTTONS & BADGES --- */
 .btn-primary {
     display: inline-flex;
     align-items: center;
