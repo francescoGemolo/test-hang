@@ -23,7 +23,7 @@
 }
 
 .header-logo p {
-    font-size: var(--text-base);
+    font-size: var(--text-lg);
 }
 
 .filters {

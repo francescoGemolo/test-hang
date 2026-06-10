@@ -93,7 +93,7 @@
     align-items: flex-start;
     gap: var(--gap-lg);
     padding-bottom: var(--gap-xl);
-    border-bottom: 1px solid var(--border-ghost);
+    border-bottom: 1px solid var(--border);
 }
 
 .participant-content {
