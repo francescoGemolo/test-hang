@@ -172,6 +172,23 @@ input[type="time"]::-webkit-calendar-picker-indicator {
     opacity: 0.7;
 }
 
+input[type="date"],
+input[type="time"] {
+    font-size: var(--text-base);
+    min-height: 48px;
+    padding: var(--pad-input);
+    line-height: normal;
+    display: flex;
+    align-items: center;
+}
+
+input[type="date"]::-webkit-date-and-time-value,
+input[type="time"]::-webkit-date-and-time-value {
+    text-align: left;
+    margin: 0;
+    padding: 0;
+}
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     -webkit-appearance: none;
