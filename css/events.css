@@ -140,15 +140,19 @@
     position: absolute;
     top: calc(100% + 4px);
     right: 0;
-    background: var(--surface);
+
+    background: rgba(64, 64, 64, 0.16);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(1.6px);
+    -webkit-backdrop-filter: blur(1.6px);
     border: 1px solid var(--border);
+
     border-radius: var(--radius-sm);
     padding: var(--gap-xs);
     min-width: 140px;
     display: flex;
     flex-direction: column;
     gap: 2px;
-    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
     opacity: 0;
     pointer-events: none;
     visibility: hidden;
