@@ -16,13 +16,33 @@
             <p class="header-title">Scopri gli eventi</p>
             <div class="avatar-circle">M</div>
         </header>
+
         <nav class="filters">
             <button class="btn-outline">Tutti</button>
             <button class="btn-secondary">Partecipo</button>
             <button class="btn-secondary">Miei</button>
         </nav>
+
         <main class="card-list">
+
             <article class="card">
+                <div class="menu-wrapper">
+                    <button class="menu-trigger" aria-label="Opzioni" aria-haspopup="true" aria-expanded="false">
+                        <i class="hgi hgi-stroke hgi-rounded hgi-more-vertical"></i>
+                    </button>
+                    <div class="dropdown" role="menu">
+                        <button class="menu-item" role="menuitem">
+                            <i class="hgi hgi-stroke hgi-rounded hgi-pen-01"></i>
+                            Modifica
+                        </button>
+                        <div class="divider"></div>
+                        <button class="menu-item delete" role="menuitem">
+                            <i class="hgi hgi-stroke hgi-rounded hgi-delete-02"></i>
+                            Elimina
+                        </button>
+                    </div>
+                </div>
+
                 <h2 class="card-title">Aperitivo Serale</h2>
                 <div class="card-info">
                     <div class="info-group">
@@ -45,7 +65,25 @@
                     </a>
                 </div>
             </article>
+
             <article class="card">
+                <div class="menu-wrapper">
+                    <button class="menu-trigger" aria-label="Opzioni" aria-haspopup="true" aria-expanded="false">
+                        <i class="hgi hgi-stroke hgi-rounded hgi-more-vertical"></i>
+                    </button>
+                    <div class="dropdown" role="menu">
+                        <button class="menu-item" role="menuitem">
+                            <i class="hgi hgi-stroke hgi-rounded hgi-pen-01"></i>
+                            Modifica
+                        </button>
+                        <div class="divider"></div>
+                        <button class="menu-item delete" role="menuitem">
+                            <i class="hgi hgi-stroke hgi-rounded hgi-delete-02"></i>
+                            Elimina
+                        </button>
+                    </div>
+                </div>
+
                 <h2 class="card-title">Danza Puzzo</h2>
                 <div class="card-info">
                     <div class="info-group">
@@ -68,13 +106,46 @@
                     </a>
                 </div>
             </article>
+
         </main>
+
         <footer class="footer">
             <a href="create-event.html" class="btn-icon-action" aria-label="Aggiungi nuovo evento">
                 <i class="hgi hgi-stroke hgi-rounded hgi-add-01"></i>
             </a>
         </footer>
     </div>
+
+    <script>
+        document.querySelectorAll('.menu-wrapper').forEach(wrapper => {
+            const trigger = wrapper.querySelector('.menu-trigger');
+            const dropdown = wrapper.querySelector('.dropdown');
+
+            function toggleMenu(open) {
+                trigger.classList.toggle('open', open);
+                dropdown.classList.toggle('open', open);
+                trigger.setAttribute('aria-expanded', open);
+            }
+
+            trigger.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const isOpen = dropdown.classList.contains('open');
+                closeAllMenus();
+                toggleMenu(!isOpen);
+            });
+        });
+
+        function closeAllMenus() {
+            document.querySelectorAll('.menu-trigger').forEach(trig => trig.classList.remove('open'));
+            document.querySelectorAll('.dropdown').forEach(drop => drop.classList.remove('open'));
+            document.querySelectorAll('.menu-trigger').forEach(trig => trig.setAttribute('aria-expanded', 'false'));
+        }
+
+        document.addEventListener('click', closeAllMenus);
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeAllMenus();
+        });
+    </script>
 </body>
 
 </html>
