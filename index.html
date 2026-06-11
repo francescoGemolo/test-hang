@@ -12,7 +12,7 @@
 
 <body>
     <div class="app-login">
-        <form class="form" onsubmit="return false;">
+        <form class="form" id="loginForm" onsubmit="return false;">
             <div class="form-header">
                 <h1>Ciao! 👋🏻</h1>
                 <p>Scegli un nickname e aggiungi i tuoi contatti (visibili solo ai partecipanti dei tuoi eventi).</p>
@@ -24,16 +24,18 @@
                     </div>
                     <label for="nickname">Nickname *</label>
                 </div>
-                <input type="text" id="nickname" placeholder="es. Marco_92" required maxlength="15">
+                <input type="text" id="nickname" placeholder="es. Marco_92" maxlength="15">
+                <span class="field-error" id="nickname-error">Inserisci un nickname.</span>
             </div>
             <div class="form-group">
                 <div class="label-group">
                     <div class="label-icon">
                         <i class="hgi hgi-stroke hgi-rounded hgi-whatsapp"></i>
                     </div>
-                    <label for="whatsapp">Whatsapp <span>(opzionale)</span></label>
+                    <label for="whatsapp">Whatsapp *</label>
                 </div>
                 <input type="text" id="whatsapp" inputmode="numeric" pattern="[0-9]*" placeholder="328 333 ...">
+                <span class="field-error" id="whatsapp-error">Inserisci il numero WhatsApp.</span>
             </div>
             <div class="form-group">
                 <div class="label-group">
@@ -53,9 +55,10 @@
                 </div>
                 <input type="text" id="telegram" placeholder="@username">
             </div>
-            <a href="events.html" class="btn-primary">Entra</a>
+            <button type="button" class="btn-primary" id="submitBtn">Entra</button>
         </form>
     </div>
+    <script src="js/login.js"></script>
 </body>
 
 </html>

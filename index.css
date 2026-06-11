@@ -127,7 +127,7 @@ button {
 .label-group {
     display: flex;
     align-items: center;
-    gap: var(--gap-md);
+    gap: var(--gap-sm);
 }
 
 .label-group span {

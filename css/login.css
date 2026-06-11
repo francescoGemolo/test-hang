@@ -22,3 +22,23 @@
     color: var(--neutral-400);
     font-size: var(--text-base);
 }
+
+/* Validation */
+.field-error {
+    display: none;
+    font-size: var(--text-sm);
+    color: #f87171;
+}
+
+input.input-error {
+    border-color: #f87171;
+}
+
+input.input-error:hover,
+input.input-error:focus {
+    border-color: #fca5a5;
+}
+
+.form-group.has-error .field-error {
+    display: block;
+}
