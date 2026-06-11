@@ -7,7 +7,6 @@
     padding: var(--space-page-top) var(--space-page-x);
 }
 
-/* Reuses .header-back from details, extended here with a centered title */
 .header-back {
     position: relative;
     display: flex;
@@ -21,20 +20,6 @@
     font-size: 24px;
     font-weight: 700;
     text-align: center;
-}
-
-.btn-back {
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 24px;
-    color: var(--neutral-50);
-    transition: opacity 0.2s ease;
-}
-
-.btn-back:hover {
-    opacity: 0.8;
 }
 
 .form-actions {
@@ -60,4 +45,24 @@
 
 .btn-cancel:hover {
     color: var(--neutral-50);
+}
+
+/* Validation */
+.field-error {
+    display: none;
+    font-size: var(--text-sm);
+    color: #f87171;
+}
+
+input.input-error {
+    border-color: #f87171;
+}
+
+input.input-error:hover,
+input.input-error:focus {
+    border-color: #fca5a5;
+}
+
+.form-group.has-error .field-error {
+    display: block;
 }

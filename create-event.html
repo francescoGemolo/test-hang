@@ -18,7 +18,7 @@
             </a>
             <h1>Crea Evento</h1>
         </header>
-        <form class="form" onsubmit="return false;">
+        <form class="form" id="createEventForm" onsubmit="return false;">
             <div class="form-group">
                 <div class="label-group">
                     <div class="label-icon">
@@ -26,7 +26,8 @@
                     </div>
                     <label for="event-title">Titolo dell'evento *</label>
                 </div>
-                <input type="text" id="event-title" placeholder="es. Aperitivo Serale" required>
+                <input type="text" id="event-title" placeholder="es. Aperitivo Serale">
+                <span class="field-error" id="event-title-error">Inserisci un titolo per l'evento.</span>
             </div>
             <div class="form-row">
                 <div class="form-group">
@@ -36,7 +37,8 @@
                         </div>
                         <label for="event-date">Data *</label>
                     </div>
-                    <input type="date" id="event-date" required>
+                    <input type="date" id="event-date">
+                    <span class="field-error" id="event-date-error">Seleziona una data.</span>
                 </div>
                 <div class="form-group">
                     <div class="label-group">
@@ -45,7 +47,8 @@
                         </div>
                         <label for="event-time">Ora *</label>
                     </div>
-                    <input type="time" id="event-time" required>
+                    <input type="time" id="event-time">
+                    <span class="field-error" id="event-time-error">Seleziona un orario.</span>
                 </div>
             </div>
             <div class="form-group">
@@ -55,23 +58,36 @@
                     </div>
                     <label for="event-location">Luogo *</label>
                 </div>
-                <input type="text" id="event-location" placeholder="es. Bar Mediterraneo o link Maps" required>
+                <input type="text" id="event-location" placeholder="es. Bar Mediterraneo o link Maps">
+                <span class="field-error" id="event-location-error">Inserisci il luogo dell'evento.</span>
             </div>
             <div class="form-group">
                 <div class="label-group">
                     <div class="label-icon">
                         <i class="hgi hgi-stroke hgi-rounded hgi-user-group"></i>
                     </div>
-                    <label for="event-max-participants">Partecipanti max <span>(opzionale)</span></label>
+                    <label for="event-max-participants">Partecipanti max *</label>
                 </div>
                 <input type="number" id="event-max-participants" inputmode="numeric" min="2" placeholder="es. 10">
+                <span class="field-error" id="event-max-participants-error">Inserisci il numero massimo di partecipanti
+                    (min. 2).</span>
+            </div>
+            <div class="form-group">
+                <div class="label-group">
+                    <div class="label-icon">
+                        <i class="hgi hgi-stroke hgi-rounded hgi-text-font"></i>
+                    </div>
+                    <label for="event-description">Descrizione <span>(opzionale)</span></label>
+                </div>
+                <input type="text" id="event-description" placeholder="es. Portate qualcosa da bere!">
             </div>
             <div class="form-actions">
-                <button type="submit" class="btn-primary">Crea Evento</button>
+                <button type="button" class="btn-primary" id="submitBtn">Crea Evento</button>
                 <a href="events.html" class="btn-cancel">Annulla</a>
             </div>
         </form>
     </div>
+    <script src="js/create-event.js"></script>
 </body>
 
 </html>

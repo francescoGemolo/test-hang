@@ -8,18 +8,15 @@
 }
 
 .header-back {
+    position: relative;
     display: flex;
     align-items: center;
-    padding-bottom: var(--gap-2xl);
+    min-height: 40px;
+    margin-bottom: var(--space-section);
 }
 
-.btn-back i {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    color: var(--neutral-50);
-    padding: var(--gap-md);
-    font-size: 22px;
-    border-radius: var(--radius-sm);
+.app-details .header-back {
+    margin-bottom: var(--gap-xl);
 }
 
 .wrapper {

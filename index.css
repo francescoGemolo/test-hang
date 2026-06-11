@@ -286,6 +286,29 @@ input::-webkit-inner-spin-button {
     transform: scale(1.05);
 }
 
+.btn-back {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 24px;
+    color: var(--neutral-50);
+    transition: opacity 0.2s ease;
+}
+
+.btn-back:hover {
+    opacity: 0.8;
+}
+
+.btn-back i {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--neutral-50);
+    padding: var(--gap-md);
+    font-size: 22px;
+    border-radius: var(--radius-sm);
+}
+
 /* Avatar */
 .avatar-circle {
     width: 36px;
