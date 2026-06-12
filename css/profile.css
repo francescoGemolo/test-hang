@@ -28,7 +28,6 @@
     gap: var(--space-section);
 }
 
-/* Profile header */
 .profile-header {
     display: flex;
     flex-direction: column;
@@ -48,7 +47,6 @@
     color: var(--neutral-50);
 }
 
-/* Profile card */
 .profile-card {
     display: flex;
     flex-direction: column;
@@ -117,7 +115,6 @@
     color: var(--neutral-50);
 }
 
-/* Actions */
 .profile-actions {
     display: flex;
     flex-direction: column;
@@ -142,7 +139,6 @@
     border-color: #fca5a5;
 }
 
-/* Form */
 .profile-form {
     display: flex;
     flex-direction: column;
