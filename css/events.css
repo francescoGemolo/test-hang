@@ -250,3 +250,43 @@
     border-radius: var(--radius-full);
     padding: var(--gap-lg);
 }
+
+/* Empty State Graphic styling */
+.empty-state {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 40px var(--gap-xl);
+    gap: var(--gap-lg);
+    background: var(--surface);
+    border: 1px dashed var(--border);
+    border-radius: var(--radius-lg);
+    margin-top: var(--gap-md);
+}
+
+.empty-state.active {
+    display: flex;
+}
+
+.empty-icon {
+    font-size: 40px;
+    color: var(--neutral-500);
+}
+
+.empty-state h3 {
+    font-size: var(--text-lg);
+    font-weight: 600;
+}
+
+.empty-state p {
+    font-size: var(--text-sm);
+    color: var(--neutral-400);
+    max-width: 320px;
+    line-height: 1.5;
+    margin-bottom: var(--gap-xs);
+}
+
+.empty-state .btn-outline {
+    width: auto;
+}

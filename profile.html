@@ -115,6 +115,21 @@
         </main>
     </div>
 
+    <div class="modal-overlay" id="deleteModal">
+        <div class="modal-card">
+            <div class="modal-icon">
+                <i class="hgi hgi-stroke hgi-rounded hgi-alert-01"></i>
+            </div>
+            <h2>Eliminare l'account?</h2>
+            <p>Sei sicuro di voler eliminare il tuo account? Questa azione è irreversibile e perderai la partecipazione
+                a tutti gli eventi.</p>
+            <div class="modal-actions">
+                <button type="button" class="btn-danger" id="confirmDeleteBtn">Sì, elimina</button>
+                <button type="button" class="btn-secondary" id="closeModalBtn">Annulla</button>
+            </div>
+        </div>
+    </div>
+
     <script>
         const editBtn = document.getElementById('editBtn');
         const deleteBtn = document.getElementById('deleteBtn');
@@ -122,6 +137,10 @@
         const profileInfo = document.getElementById('profileInfo');
         const profileActions = document.getElementById('profileActions');
         const profileForm = document.getElementById('profileForm');
+
+        // Elementi del Modal
+        const deleteModal = document.getElementById('deleteModal');
+        const closeModalBtn = document.getElementById('closeModalBtn');
 
         function enterEditMode() {
             profileInfo.style.display = 'none';
@@ -137,6 +156,22 @@
 
         editBtn.addEventListener('click', enterEditMode);
         cancelBtn.addEventListener('click', exitEditMode);
+
+        // Gestione apertura/chiusura modal
+        deleteBtn.addEventListener('click', () => {
+            deleteModal.classList.add('open');
+        });
+
+        closeModalBtn.addEventListener('click', () => {
+            deleteModal.classList.remove('open');
+        });
+
+        // Chiude se si clicca fuori dalla card
+        deleteModal.addEventListener('click', (e) => {
+            if (e.target === deleteModal) {
+                deleteModal.classList.remove('open');
+            }
+        });
     </script>
 </body>
 

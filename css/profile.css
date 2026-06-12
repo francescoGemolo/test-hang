@@ -160,3 +160,9 @@
 .form-actions .btn-cancel {
     width: 100%;
 }
+
+.form-actions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-md);
+}

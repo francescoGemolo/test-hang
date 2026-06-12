@@ -25,6 +25,15 @@
 
         <main class="card-list">
 
+            <div class="empty-state">
+                <div class="empty-icon">
+                    <i class="hgi hgi-stroke hgi-rounded hgi-calendar-03"></i>
+                </div>
+                <h3>Nessun evento in programma</h3>
+                <p>Non c'è ancora nessun evento disponibile in questa sezione. Creane uno tu per iniziare!</p>
+                <a href="create-event.html" class="btn-outline">Crea un evento</a>
+            </div>
+
             <article class="card">
                 <div class="menu-wrapper">
                     <button class="menu-trigger" aria-label="Opzioni" aria-haspopup="true" aria-expanded="false">
@@ -220,7 +229,7 @@
         });
 
         function closeAllMenus() {
-            document.querySelectorAll('.menu-trigger').forEach(trig => trig.classList.remove('open'));
+            document.querySelectorAll('.menu-trigger').forEach(trig => trig.remove('open'));
             document.querySelectorAll('.dropdown').forEach(drop => drop.classList.remove('open'));
             document.querySelectorAll('.menu-trigger').forEach(trig => trig.setAttribute('aria-expanded', 'false'));
         }
