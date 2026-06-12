@@ -278,7 +278,6 @@ input::-webkit-inner-spin-button {
     align-items: center;
     cursor: pointer;
     font-size: var(--text-lg);
-    padding: var(--gap-sm);
     transition: transform 0.2s ease;
 }
 

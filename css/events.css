@@ -112,8 +112,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 36px;
-    height: 36px;
+    width: 30px;
+    height: 30px;
     background: transparent;
     border: 1px solid transparent;
     border-radius: var(--radius-full);
@@ -131,7 +131,7 @@
 }
 
 .card .menu-trigger.open {
-    background: var(--neutral-700);
+    background: transparent;
     border-color: var(--border-hover);
     color: var(--neutral-50);
 }
@@ -141,15 +141,15 @@
     top: calc(100% + 4px);
     right: 0;
 
-    background: rgba(64, 64, 64, 0.16);
-    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(1.6px);
-    -webkit-backdrop-filter: blur(1.6px);
+    background: rgba(64, 64, 64, 0.2);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
     border: 1px solid var(--border);
 
     border-radius: var(--radius-sm);
-    padding: var(--gap-xs);
-    min-width: 140px;
+    padding: var(--gap-sm);
+    min-width: 160px;
     display: flex;
     flex-direction: column;
     gap: 2px;
