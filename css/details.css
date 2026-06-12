@@ -15,6 +15,11 @@
     margin-bottom: var(--space-section);
 }
 
+/* Header OVR */
+.app-details .header-back {
+    margin-bottom: var(--gap-xl);
+}
+
 .wrapper {
     display: flex;
     flex-direction: column;

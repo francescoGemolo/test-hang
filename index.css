@@ -374,6 +374,7 @@ input::-webkit-inner-spin-button {
     color: var(--neutral-400);
     cursor: pointer;
     transition: all 0.2s ease;
+    font-size: var(--text-lg)
 }
 
 .card .menu-trigger:hover,
@@ -392,10 +393,9 @@ input::-webkit-inner-spin-button {
 
 .card .dropdown {
     position: absolute;
-    top: calc(100% + 4px);
+    top: calc(100% + 14px);
     right: 0;
-    background: rgba(64, 64, 64, 0.2);
-    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6);
+    background: rgba(40, 40, 40, 0.8);
     backdrop-filter: blur(2px);
     -webkit-backdrop-filter: blur(2px);
     border: 1px solid var(--border);
@@ -426,7 +426,7 @@ input::-webkit-inner-spin-button {
     gap: var(--gap-md);
     padding: var(--pad-badge);
     width: 100%;
-    font-size: var(--text-sm);
+    font-size: var(--text-base);
     color: var(--neutral-400);
     border-radius: calc(var(--radius-sm) - 4px);
     text-align: left;
