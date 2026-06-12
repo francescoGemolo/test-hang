@@ -32,37 +32,3 @@
 .form-actions .btn-primary {
     width: 100%;
 }
-
-.btn-cancel {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: var(--pad-btn-compact);
-    color: var(--neutral-400);
-    font-size: var(--text-sm);
-    transition: color 0.2s ease;
-}
-
-.btn-cancel:hover {
-    color: var(--neutral-50);
-}
-
-/* Validation */
-.field-error {
-    display: none;
-    font-size: var(--text-sm);
-    color: #f87171;
-}
-
-input.input-error {
-    border-color: #f87171;
-}
-
-input.input-error:hover,
-input.input-error:focus {
-    border-color: #fca5a5;
-}
-
-.form-group.has-error .field-error {
-    display: block;
-}
