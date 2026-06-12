@@ -36,8 +36,8 @@
     gap: var(--gap-lg);
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: var(--radius-sm);
-    padding: var(--pad-card);
+    border-radius: var(--radius-lg);
+    padding: var(--gap-2xl);
 }
 
 .info-list {
@@ -68,9 +68,11 @@
     color: var(--neutral-400);
 }
 
-.wrapper>.btn-primary {
+.wrapper>.btn-outline {
     margin-top: var(--gap-2xl);
     margin-bottom: var(--gap-sm);
+    width: 100%;
+    gap: var(--gap-sm);
 }
 
 .participants-section {
@@ -121,4 +123,38 @@
     align-items: center;
     flex-wrap: wrap;
     gap: var(--gap-sm);
+}
+
+/* Contact icon boxes — same language as profile page */
+.contact-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--gap-sm);
+    padding: 6px 12px;
+    border-radius: var(--radius-full);
+    border: 1px solid;
+    font-size: var(--text-sm);
+}
+
+.contact-icon i {
+    font-size: var(--text-base);
+}
+
+.contact-icon.whatsapp {
+    color: #25d366;
+    background: #25d36620;
+    border-color: #25d36640;
+}
+
+.contact-icon.instagram {
+    color: #ff2f72;
+    background: #ff2f7220;
+    border-color: #ff2f7240;
+}
+
+.contact-icon.telegram {
+    color: #1d9bf0;
+    background: #1d9bf020;
+    border-color: #1d9bf040;
 }

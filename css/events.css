@@ -78,6 +78,7 @@
     flex-shrink: 0;
     padding: 4px 12px;
     border-radius: var(--radius-full);
+    border: 1px solid;
     font-size: 12px;
     white-space: nowrap;
 }
@@ -85,16 +86,19 @@
 .card-status.status-open {
     background: #4ade8020;
     color: #4ade80;
+    border-color: #4ade8040;
 }
 
 .card-status.status-almost {
     background: #fb923c20;
     color: #fb923c;
+    border-color: #fb923c40;
 }
 
 .card-status.status-full {
     background: #f8717120;
     color: #f87171;
+    border-color: #f8717140;
 }
 
 /* Info */
@@ -141,8 +145,9 @@
 
 .attendees {
     display: flex;
-    align-items: center;
-    gap: var(--gap-md);
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
 }
 
 .avatar-stack {
@@ -194,8 +199,8 @@
 }
 
 .attendees-count {
-    font-size: var(--text-sm);
-    color: var(--neutral-400);
+    font-size: 12px;
+    color: var(--neutral-500);
 }
 
 .card-actions {
