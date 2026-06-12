@@ -1,0 +1,137 @@
+.app-profile {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    max-width: 480px;
+    margin: 0 auto;
+    padding: var(--space-page-top) var(--space-page-x);
+}
+
+.header-back {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: var(--space-section);
+}
+
+.header-back h1 {
+    font-size: 24px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--gap-lg);
+    padding-bottom: var(--space-section);
+}
+
+.avatar-large {
+    width: 80px;
+    height: 80px;
+    font-size: 32px;
+}
+
+.profile-nickname {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--neutral-50);
+}
+
+.profile-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-xl);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: var(--pad-card);
+}
+
+.profile-info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-md);
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: var(--gap-sm);
+}
+
+.info-item i {
+    font-size: var(--text-base);
+    color: var(--accent);
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.info-item p {
+    font-size: var(--text-base);
+    color: var(--neutral-400);
+}
+
+.profile-actions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-md);
+}
+
+.profile-actions .btn-outline,
+.profile-actions .btn-secondary {
+    width: 100%;
+    justify-content: center;
+}
+
+.profile-actions .btn-secondary.delete {
+    color: #f87171;
+    border-color: #f87171;
+}
+
+.profile-actions .btn-secondary.delete:hover {
+    background-color: #f8717120;
+    color: #fca5a5;
+    border-color: #fca5a5;
+}
+
+.profile-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-xl);
+}
+
+.form-actions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-lg);
+    margin-top: var(--gap-xs);
+}
+
+.form-actions .btn-primary {
+    width: 100%;
+}
+
+.btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--gap-md);
+    padding: var(--pad-btn-compact);
+    border: 1px solid;
+    border-radius: var(--radius-full);
+    font-size: var(--text-sm);
+    transition: all 0.2s ease;
+}

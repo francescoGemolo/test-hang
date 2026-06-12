@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://use.hugeicons.com/font/icons.css">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="css/profile.css">
+    <title>Profilo</title>
+</head>
+
+<body>
+    <div class="app-profile">
+        <header class="header-back">
+            <a href="events.html" class="btn-back" aria-label="Torna agli eventi">
+                <i class="hgi hgi-stroke hgi-rounded hgi-arrow-left-01"></i>
+            </a>
+            <h1>Il tuo profilo</h1>
+        </header>
+
+        <main class="wrapper">
+            <div class="profile-header">
+                <div class="avatar-circle avatar-large">M</div>
+                <h2 class="profile-nickname">Marco_92</h2>
+            </div>
+
+            <article class="profile-card">
+                <div class="profile-info">
+                    <div class="info-item">
+                        <i class="hgi hgi-stroke hgi-rounded hgi-whatsapp"></i>
+                        <p>+39 333 1234567</p>
+                    </div>
+                    <div class="info-item">
+                        <i class="hgi hgi-stroke hgi-rounded hgi-instagram"></i>
+                        <p>@marco_roma</p>
+                    </div>
+                    <div class="info-item">
+                        <i class="hgi hgi-stroke hgi-rounded hgi-telegram"></i>
+                        <p>@marco_tg</p>
+                    </div>
+            </article>
+
+            <div class="profile-actions">
+                <button type="button" class="btn-outline" id="editBtn">
+                    <i class="hgi hgi-stroke hgi-rounded hgi-pen-01"></i>
+                    Modifica
+                </button>
+                <button type="button" class="btn-secondary delete" id="deleteBtn">
+                    <i class="hgi hgi-stroke hgi-rounded hgi-delete-02"></i>
+                    Elimina account
+                </button>
+            </div>
+
+            <form class="form profile-form" id="profileForm" style="display: none;">
+                <div class="form-group">
+                    <div class="label-group">
+                        <div class="label-icon">
+                            <i class="hgi hgi-stroke hgi-rounded hgi-user"></i>
+                        </div>
+                        <label for="nickname">Nickname *</label>
+                    </div>
+                    <input type="text" id="nickname" value="Marco_92" maxlength="15">
+                    <span class="field-error" id="nickname-error">Inserisci un nickname.</span>
+                </div>
+                <div class="form-group">
+                    <div class="label-group">
+                        <div class="label-icon">
+                            <i class="hgi hgi-stroke hgi-rounded hgi-whatsapp"></i>
+                        </div>
+                        <label for="whatsapp">Whatsapp *</label>
+                    </div>
+                    <input type="text" id="whatsapp" inputmode="numeric" pattern="[0-9]*" value="+39 333 1234567">
+                    <span class="field-error" id="whatsapp-error">Inserisci il numero WhatsApp.</span>
+                </div>
+                <div class="form-group">
+                    <div class="label-group">
+                        <div class="label-icon">
+                            <i class="hgi hgi-stroke hgi-rounded hgi-instagram"></i>
+                        </div>
+                        <label for="instagram">Instagram <span>(opzionale)</span></label>
+                    </div>
+                    <input type="text" id="instagram" value="@marco_roma">
+                </div>
+                <div class="form-group">
+                    <div class="label-group">
+                        <div class="label-icon">
+                            <i class="hgi hgi-stroke hgi-rounded hgi-telegram"></i>
+                        </div>
+                        <label for="telegram">Telegram <span>(opzionale)</span></label>
+                    </div>
+                    <input type="text" id="telegram" value="@marco_tg">
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn-primary" id="saveBtn">Salva modifiche</button>
+                    <button type="button" class="btn-cancel" id="cancelBtn">Annulla</button>
+                </div>
+            </form>
+            </article>
+        </main>
+    </div>
+</body>
+
+</html>
