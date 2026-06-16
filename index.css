@@ -426,11 +426,13 @@ input.input-error:focus {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--accent);
     color: var(--bg);
     border-radius: var(--radius-full);
     font-size: 26px;
-    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6), 0 0 0 1px var(--accent-hover) inset;
+    background: rgba(163, 230, 53, 0.41);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(2.3px);
+    -webkit-backdrop-filter: blur(2.3px);
     transition: background 0.2s ease, transform 0.15s ease;
     z-index: 50;
 }
@@ -444,9 +446,6 @@ input.input-error:focus {
     transform: scale(0.96);
 }
 
-/* ============================================
-   AVATAR
-   ============================================ */
 .avatar-circle {
     width: 36px;
     height: 36px;
