@@ -1,10 +1,5 @@
 .app-events {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    max-width: 480px;
-    margin: 0 auto;
-    padding: var(--space-page-top) var(--space-page-x);
+    padding-bottom: 100px;
 }
 
 .page-header {
@@ -40,7 +35,6 @@
     gap: var(--gap-xl);
 }
 
-/* Card */
 .card {
     position: relative;
     display: flex;
@@ -71,7 +65,7 @@
     line-height: 1.3;
 }
 
-/* Status badges — varied palette, lime reserved for "open" only */
+/* Status badges */
 .card-status {
     display: inline-flex;
     align-items: center;
@@ -85,19 +79,19 @@
 
 .card-status.status-open {
     background: #4ade8020;
-    color: #4ade80;
+    color: var(--status-open);
     border-color: #4ade8040;
 }
 
 .card-status.status-almost {
     background: #fb923c20;
-    color: #fb923c;
+    color: var(--status-almost);
     border-color: #fb923c40;
 }
 
 .card-status.status-full {
     background: #f8717120;
-    color: #f87171;
+    color: var(--danger);
     border-color: #f8717140;
 }
 
@@ -132,7 +126,6 @@
     font-weight: 500;
 }
 
-/* Footer with avatars + action */
 .card-footer {
     display: flex;
     justify-content: space-between;
@@ -170,10 +163,9 @@
     margin-left: 0;
 }
 
-/* Varied avatar colors — applied via nth-child so markup stays simple */
 .avatar-stack .avatar-circle:nth-child(4n+1) {
     background: #a3e63530;
-    color: #a3e635;
+    color: var(--accent);
 }
 
 .avatar-stack .avatar-circle:nth-child(4n+2) {
@@ -183,7 +175,7 @@
 
 .avatar-stack .avatar-circle:nth-child(4n+3) {
     background: #fb923c30;
-    color: #fb923c;
+    color: var(--status-almost);
 }
 
 .avatar-stack .avatar-circle:nth-child(4n+4) {
@@ -234,24 +226,7 @@
     border-color: var(--accent-hover);
 }
 
-.page-footer {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    width: 100%;
-    margin-top: auto;
-    padding-top: var(--space-page-top);
-}
-
-.page-footer .btn-icon-action i {
-    background: var(--accent);
-    font-size: 22px;
-    color: var(--bg);
-    border-radius: var(--radius-full);
-    padding: var(--gap-lg);
-}
-
-/* Empty State Graphic styling */
+/* Empty state */
 .empty-state {
     display: none;
     flex-direction: column;

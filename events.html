@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <div class="app-events">
+    <div class="app-screen app-events">
         <header class="page-header">
             <p class="header-title">Scopri gli eventi</p>
             <a href="profile.html" class="avatar-circle">M</a>
@@ -201,37 +201,33 @@
             </article>
 
         </main>
-
-        <footer class="page-footer">
-            <a href="create-event.html" class="btn-icon-action" aria-label="Aggiungi nuovo evento">
-                <i class="hgi hgi-stroke hgi-rounded hgi-add-01"></i>
-            </a>
-        </footer>
     </div>
+
+    <a href="create-event.html" class="btn-fab" aria-label="Crea un nuovo evento">
+        <i class="hgi hgi-stroke hgi-rounded hgi-add-01"></i>
+    </a>
 
     <script>
         document.querySelectorAll('.menu-wrapper').forEach(wrapper => {
             const trigger = wrapper.querySelector('.menu-trigger');
             const dropdown = wrapper.querySelector('.dropdown');
 
-            function toggleMenu(open) {
-                trigger.classList.toggle('open', open);
-                dropdown.classList.toggle('open', open);
-                trigger.setAttribute('aria-expanded', open);
-            }
-
             trigger.addEventListener('click', (e) => {
                 e.stopPropagation();
                 const isOpen = dropdown.classList.contains('open');
                 closeAllMenus();
-                toggleMenu(!isOpen);
+                trigger.classList.toggle('open', !isOpen);
+                dropdown.classList.toggle('open', !isOpen);
+                trigger.setAttribute('aria-expanded', !isOpen);
             });
         });
 
         function closeAllMenus() {
-            document.querySelectorAll('.menu-trigger').forEach(trig => trig.remove('open'));
+            document.querySelectorAll('.menu-trigger').forEach(trig => {
+                trig.classList.remove('open');
+                trig.setAttribute('aria-expanded', 'false');
+            });
             document.querySelectorAll('.dropdown').forEach(drop => drop.classList.remove('open'));
-            document.querySelectorAll('.menu-trigger').forEach(trig => trig.setAttribute('aria-expanded', 'false'));
         }
 
         document.addEventListener('click', closeAllMenus);

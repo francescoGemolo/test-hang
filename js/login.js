@@ -1,32 +1,18 @@
 const submitBtn = document.getElementById('submitBtn');
 
-function validateField(inputId, errorId) {
-    const input = document.getElementById(inputId);
-    const error = document.getElementById(errorId);
-    const group = input.closest('.form-group');
-    const isEmpty = input.value.trim() === '';
-
-    if (isEmpty) {
-        input.classList.add('input-error');
-        group.classList.add('has-error');
-    } else {
-        input.classList.remove('input-error');
-        group.classList.remove('has-error');
-    }
-
-    return !isEmpty;
+function validateField(inputId, errorId, isValid) {
+    const group = document.getElementById(inputId).closest('.form-group');
+    group.classList.toggle('has-error', !isValid);
+    document.getElementById(inputId).classList.toggle('input-error', !isValid);
+    return isValid;
 }
 
-['nickname', 'whatsapp'].forEach(id => {
-    document.getElementById(id).addEventListener('input', () => {
-        const errorId = `${id}-error`;
-        validateField(id, errorId);
-    });
-});
-
 submitBtn.addEventListener('click', () => {
-    const nicknameValid = validateField('nickname', 'nickname-error');
-    const whatsappValid = validateField('whatsapp', 'whatsapp-error');
+    const nickname = document.getElementById('nickname').value.trim();
+    const whatsapp = document.getElementById('whatsapp').value.trim();
+
+    const nicknameValid = validateField('nickname', 'nickname-error', nickname.length > 0);
+    const whatsappValid = validateField('whatsapp', 'whatsapp-error', whatsapp.length > 0);
 
     if (nicknameValid && whatsappValid) {
         window.location.href = 'events.html';

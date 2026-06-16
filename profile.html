@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <div class="app-profile">
+    <div class="app-screen app-profile">
         <header class="header-back">
             <a href="events.html" class="btn-back" aria-label="Torna agli eventi">
                 <i class="hgi hgi-stroke hgi-rounded hgi-arrow-left-01"></i>
@@ -130,49 +130,7 @@
         </div>
     </div>
 
-    <script>
-        const editBtn = document.getElementById('editBtn');
-        const deleteBtn = document.getElementById('deleteBtn');
-        const cancelBtn = document.getElementById('cancelBtn');
-        const profileInfo = document.getElementById('profileInfo');
-        const profileActions = document.getElementById('profileActions');
-        const profileForm = document.getElementById('profileForm');
-
-        // Elementi del Modal
-        const deleteModal = document.getElementById('deleteModal');
-        const closeModalBtn = document.getElementById('closeModalBtn');
-
-        function enterEditMode() {
-            profileInfo.style.display = 'none';
-            profileActions.style.display = 'none';
-            profileForm.style.display = 'flex';
-        }
-
-        function exitEditMode() {
-            profileInfo.style.display = 'flex';
-            profileActions.style.display = 'flex';
-            profileForm.style.display = 'none';
-        }
-
-        editBtn.addEventListener('click', enterEditMode);
-        cancelBtn.addEventListener('click', exitEditMode);
-
-        // Gestione apertura/chiusura modal
-        deleteBtn.addEventListener('click', () => {
-            deleteModal.classList.add('open');
-        });
-
-        closeModalBtn.addEventListener('click', () => {
-            deleteModal.classList.remove('open');
-        });
-
-        // Chiude se si clicca fuori dalla card
-        deleteModal.addEventListener('click', (e) => {
-            if (e.target === deleteModal) {
-                deleteModal.classList.remove('open');
-            }
-        });
-    </script>
+    <script src="js/profile.js"></script>
 </body>
 
 </html>
