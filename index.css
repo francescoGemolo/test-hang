@@ -421,25 +421,38 @@ input.input-error:focus {
     position: fixed;
     bottom: var(--gap-2xl);
     right: var(--gap-2xl);
-    width: 56px;
-    height: 56px;
+    width: 48px;
+    height: 48px;
     display: flex;
     align-items: center;
     justify-content: center;
+    background: hsla(83, 79%, 64%, 0.35);
     color: var(--bg);
     border-radius: var(--radius-full);
-    font-size: 26px;
-    background: rgba(163, 230, 53, 0.41);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(2.3px);
-    -webkit-backdrop-filter: blur(2.3px);
-    transition: background 0.2s ease, transform 0.15s ease;
+    font-size: 22px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+    transition: background 0.35s ease, width 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+        height 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), font-size 0.35s ease,
+        box-shadow 0.35s ease, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease;
     z-index: 50;
+}
+
+.btn-fab.scrolling {
+    width: 56px;
+    height: 56px;
+    font-size: 26px;
+    background: var(--accent);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6), 0 0 0 1px var(--accent-hover) inset;
+}
+
+.btn-fab.hide-on-scroll {
+    transform: translateY(80px) scale(0.8);
+    opacity: 0;
 }
 
 .btn-fab:hover {
     background: var(--accent-hover);
-    transform: scale(1.05);
+    transform: scale(1.08);
 }
 
 .btn-fab:active {
@@ -624,7 +637,7 @@ input.input-error:focus {
 .checkbox-container {
     display: flex;
     align-items: center;
-    gap: var(--gap-xs);
+    gap: var(--gap-sm);
     cursor: pointer;
     font-size: var(--text-sm);
     color: var(--neutral-400);
@@ -642,7 +655,7 @@ input.input-error:focus {
 .custom-checkbox {
     width: 20px;
     height: 20px;
-    border: 1px solid var(--neutral-300);
+    border: 1px solid var(--border);
     border-radius: 6px;
     background-color: transparent;
     transition: all 0.2s ease;
@@ -671,7 +684,7 @@ input.input-error:focus {
 }
 
 .checkbox-container:hover .custom-checkbox {
-    border-color: var(--neutral-400);
+    border-color: var(--accent);
 }
 
 .modal-overlay {

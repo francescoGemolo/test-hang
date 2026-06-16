@@ -234,6 +234,26 @@
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') closeAllMenus();
         });
+
+        const fab = document.querySelector('.btn-fab');
+        let lastScrollY = window.scrollY;
+        let scrollTimeout;
+
+        window.addEventListener('scroll', () => {
+            const currentScrollY = window.scrollY;
+            const scrollingDown = currentScrollY > lastScrollY;
+
+            fab.classList.add('scrolling');
+            fab.classList.toggle('hide-on-scroll', scrollingDown && currentScrollY > 80);
+
+            lastScrollY = currentScrollY;
+
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(() => {
+                fab.classList.remove('scrolling');
+                fab.classList.remove('hide-on-scroll');
+            }, 600);
+        });
     </script>
 </body>
 
