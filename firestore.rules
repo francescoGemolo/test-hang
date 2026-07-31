@@ -1,0 +1,46 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    match /users/{uid} {
+      allow read, write: if isSignedIn() && request.auth.uid == uid;
+    }
+
+    match /events/{eventId} {
+      allow read: if true;
+
+      allow create: if isSignedIn()
+        && request.resource.data.organizerId == request.auth.uid
+        && request.resource.data.participantsCount == 1;
+
+      allow update: if isSignedIn() && (
+        (
+          resource.data.organizerId == request.auth.uid &&
+          request.resource.data.organizerId == resource.data.organizerId &&
+          request.resource.data.participantsCount == resource.data.participantsCount
+        ) || (
+          request.resource.data.diff(resource.data).affectedKeys().hasOnly(['participantsCount', 'participantsPreview']) &&
+          (
+            (
+              request.resource.data.participantsCount == resource.data.participantsCount + 1 &&
+              request.resource.data.participantsCount <= resource.data.maxParticipants
+            ) ||
+            request.resource.data.participantsCount == resource.data.participantsCount - 1
+          )
+        )
+      );
+
+      allow delete: if isSignedIn() && resource.data.organizerId == request.auth.uid;
+
+      match /participants/{uid} {
+        allow read: if isSignedIn();
+        allow create, delete: if isSignedIn() && request.auth.uid == uid;
+      }
+    }
+  }
+}
