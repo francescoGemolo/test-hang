@@ -1,75 +1,21 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="it">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://use.hugeicons.com/font/icons.css">
-    <link rel="stylesheet" href="index.css">
-    <link rel="stylesheet" href="css/login.css">
-    <title>Login</title>
+  <meta charset="UTF-8" />
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22><rect width=%2224%22 height=%2224%22 rx=%226%22 fill=%22%230a0a0a%22/><text x=%2212%22 y=%2217%22 font-size=%2214%22 text-anchor=%22middle%22 fill=%22%23a3e635%22 font-family=%22sans-serif%22>H</text></svg>" />
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1, user-scalable=no" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="theme-color" content="#0a0a0a" />
+  <title>Hangout</title>
 </head>
 
 <body>
-    <div class="app-login">
-        <form class="form" id="loginForm" onsubmit="return false;">
-            <div class="form-header">
-                <h1>Ciao! 👋🏻</h1>
-                <p>Scegli un nickname e aggiungi i tuoi contatti (visibili solo ai partecipanti dei tuoi eventi).</p>
-            </div>
-            <div class="form-group">
-                <div class="label-group">
-                    <div class="label-icon">
-                        <i class="hgi hgi-stroke hgi-rounded hgi-user"></i>
-                    </div>
-                    <label for="nickname">Nickname *</label>
-                </div>
-                <input type="text" id="nickname" placeholder="es. Marco_92" maxlength="15">
-                <span class="field-error" id="nickname-error">Inserisci un nickname.</span>
-            </div>
-            <div class="form-group">
-                <div class="label-group">
-                    <div class="label-icon">
-                        <i class="hgi hgi-stroke hgi-rounded hgi-whatsapp"></i>
-                    </div>
-                    <label for="whatsapp">Whatsapp *</label>
-                </div>
-                <input type="text" id="whatsapp" inputmode="numeric" pattern="[0-9]*" placeholder="328 333 ...">
-                <span class="field-error" id="whatsapp-error">Inserisci il numero WhatsApp.</span>
-            </div>
-            <div class="form-group">
-                <div class="label-group">
-                    <div class="label-icon">
-                        <i class="hgi hgi-stroke hgi-rounded hgi-instagram"></i>
-                    </div>
-                    <label for="instagram">Instagram <span>(opzionale)</span></label>
-                </div>
-                <input type="text" id="instagram" placeholder="@username">
-            </div>
-            <div class="form-group">
-                <div class="label-group">
-                    <div class="label-icon">
-                        <i class="hgi hgi-stroke hgi-rounded hgi-telegram"></i>
-                    </div>
-                    <label for="telegram">Telegram <span>(opzionale)</span></label>
-                </div>
-                <input type="text" id="telegram" placeholder="@username">
-            </div>
-
-            <div class="form-remember">
-                <label class="checkbox-container">
-                    <input type="checkbox" id="rememberMe">
-                    <span class="custom-checkbox">
-                        <i class="hgi hgi-stroke hgi-rounded hgi-tick-02"></i>
-                    </span>
-                    Ricordami su questo dispositivo
-                </label>
-            </div>
-
-            <button type="button" class="btn-primary" id="submitBtn">Entra</button>
-        </form>
-    </div>
-    <script src="js/login.js"></script>
+  <div id="root"></div>
+  <script type="module" src="/src/main.tsx"></script>
 </body>
 
 </html>
