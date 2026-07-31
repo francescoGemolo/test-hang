@@ -8,7 +8,7 @@ import { DropdownMenu } from '../ui/DropdownMenu';
 
 interface EventCardProps {
   event: HangoutEvent;
-  currentUserId: string;
+  currentUserId?: string;
   onEdit: () => void;
   onDelete: () => void;
 }
@@ -20,13 +20,12 @@ const STATUS_CONFIG = {
 };
 
 export function EventCard({ event, currentUserId, onEdit, onDelete }: EventCardProps) {
-  const isOrganizer = event.organizerId === currentUserId;
-  const spotsLeft = event.maxParticipants - event.participants.length;
+  const isOrganizer = currentUserId !== undefined && event.organizerId === currentUserId;
+  const spotsLeft = event.maxParticipants - event.participantsCount;
   const status = spotsLeft <= 0 ? 'full' : spotsLeft <= 2 ? 'almost' : 'open';
   const statusConfig = STATUS_CONFIG[status];
 
-  const visibleAvatars = event.participants.slice(0, 3);
-  const remaining = event.participants.length - visibleAvatars.length;
+  const remaining = event.participantsCount - event.participantsPreview.length;
 
   return (
     <article className="relative flex flex-col gap-3 rounded-3xl border border-white/20 bg-surface p-5 transition hover:border-white/30">
@@ -66,7 +65,7 @@ export function EventCard({ event, currentUserId, onEdit, onDelete }: EventCardP
       <div className="mt-1 flex items-center justify-between gap-2 border-t border-white/10 pt-3">
         <div className="flex flex-col items-start gap-1">
           <div className="flex items-center">
-            {visibleAvatars.map((participant, index) => (
+            {event.participantsPreview.map((participant, index) => (
               <Avatar
                 key={participant.id}
                 label={participant.nickname}
@@ -82,7 +81,7 @@ export function EventCard({ event, currentUserId, onEdit, onDelete }: EventCardP
             )}
           </div>
           <span className="text-xs text-neutral-500">
-            {event.participants.length} / {event.maxParticipants} partecipanti
+            {event.participantsCount} / {event.maxParticipants} partecipanti
           </span>
         </div>
         <Link

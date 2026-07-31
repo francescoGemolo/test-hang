@@ -22,7 +22,7 @@ interface FormErrors {
 export default function EventFormPage() {
   const { id } = useParams();
   const isEdit = Boolean(id);
-  const { user } = useAuth();
+  const { profile } = useAuth();
   const { events, isLoading, createEvent, updateEvent } = useEvents();
   const navigate = useNavigate();
 
@@ -51,14 +51,14 @@ export default function EventFormPage() {
     if (isEdit && !isLoading && !existing) navigate('/events', { replace: true });
   }, [isEdit, isLoading, existing, navigate]);
 
-  if (!user) return null;
+  if (!profile) return null;
   if (isEdit && isLoading) return null;
   if (isEdit && !existing) return null;
-  if (isEdit && existing && existing.organizerId !== user.id) return <Navigate to="/events" replace />;
+  if (isEdit && existing && existing.organizerId !== profile.id) return <Navigate to="/events" replace />;
 
   async function handleSubmit(event: FormEvent) {
     event.preventDefault();
-    if (!user) return;
+    if (!profile) return;
 
     const nextErrors: FormErrors = {};
     if (!isRequired(title)) nextErrors.title = "Inserisci un titolo per l'evento.";
@@ -83,7 +83,7 @@ export default function EventFormPage() {
     if (isEdit && existing) {
       await updateEvent(existing.id, draft);
     } else {
-      await createEvent(draft, user);
+      await createEvent(draft, profile);
     }
     navigate('/events');
   }

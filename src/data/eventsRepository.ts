@@ -1,134 +1,176 @@
-import type { EventDraft, HangoutEvent } from '../types/event';
+import {
+  collection,
+  doc,
+  getDocs,
+  onSnapshot,
+  orderBy,
+  query,
+  runTransaction,
+  serverTimestamp,
+  updateDoc,
+  writeBatch,
+  type Unsubscribe,
+} from 'firebase/firestore';
+import { db } from '../lib/firebase';
+import type { EventDraft, EventParticipant, HangoutEvent, ParticipantPreview } from '../types/event';
 import type { UserProfile } from '../types/user';
-import { readJSON, writeJSON } from './storage';
 
-const EVENTS_KEY = 'hangout:events';
+const EVENTS_COLLECTION = 'events';
+const PARTICIPANTS_SUBCOLLECTION = 'participants';
+const PREVIEW_SIZE = 3;
 
-export interface EventsRepository {
-  list(): Promise<HangoutEvent[]>;
-  create(draft: EventDraft, organizer: UserProfile): Promise<HangoutEvent>;
-  update(id: string, draft: EventDraft): Promise<HangoutEvent>;
-  remove(id: string): Promise<void>;
-  join(id: string, participant: UserProfile): Promise<HangoutEvent>;
-  leave(id: string, userId: string): Promise<HangoutEvent>;
+function eventsCollectionRef() {
+  return collection(db, EVENTS_COLLECTION);
 }
 
-function seedEvents(): HangoutEvent[] {
-  const marco: UserProfile = { id: 'seed-marco', nickname: 'Marco', whatsapp: '+39 333 1234567', instagram: 'marco_roma' };
-  const giulia: UserProfile = { id: 'seed-giulia', nickname: 'Giulia', instagram: 'giulia.foto', telegram: 'giulia_tg' };
-
-  const andrea: UserProfile = { id: 'seed-andrea', nickname: 'Andrea', whatsapp: '+39 333 2223344' };
-  const paolo: UserProfile = { id: 'seed-paolo', nickname: 'Paolo', instagram: 'paolo.dj' };
-  const marta: UserProfile = { id: 'seed-marta', nickname: 'Marta', telegram: 'marta_tg' };
-  const elena: UserProfile = { id: 'seed-elena', nickname: 'Elena' };
-  const davide: UserProfile = { id: 'seed-davide', nickname: 'Davide' };
-  const saraDp: UserProfile = { id: 'seed-sara-dp', nickname: 'Sara' };
-
-  const riccardo: UserProfile = { id: 'seed-riccardo', nickname: 'Riccardo', whatsapp: '+39 333 5556677' };
-  const saraCena: UserProfile = { id: 'seed-sara-cena', nickname: 'Sara', instagram: 'sara.cucina' };
-  const tommaso: UserProfile = { id: 'seed-tommaso', nickname: 'Tommaso', telegram: 'tommaso_tg' };
-  const valentina: UserProfile = { id: 'seed-valentina', nickname: 'Valentina' };
-
-  return [
-    {
-      id: 'seed-event-1',
-      title: 'Aperitivo Serale',
-      date: '2026-08-08',
-      time: '19:30',
-      location: 'Bar Mediterraneo',
-      maxParticipants: 10,
-      description: 'Apericucciole con le cucciole.',
-      organizerId: marco.id,
-      participants: [marco, giulia],
-    },
-    {
-      id: 'seed-event-2',
-      title: 'Danza Puzzo',
-      date: '2026-08-12',
-      time: '23:30',
-      location: 'Disco Sole',
-      maxParticipants: 8,
-      organizerId: andrea.id,
-      participants: [andrea, paolo, marta, elena, davide, saraDp],
-    },
-    {
-      id: 'seed-event-3',
-      title: 'Cena tra amici',
-      date: '2026-08-14',
-      time: '20:00',
-      location: 'Trattoria Da Gino',
-      maxParticipants: 4,
-      organizerId: riccardo.id,
-      participants: [riccardo, saraCena, tommaso, valentina],
-    },
-  ];
+function eventDocRef(eventId: string) {
+  return doc(db, EVENTS_COLLECTION, eventId);
 }
 
-function loadEvents(): HangoutEvent[] {
-  const existing = readJSON<HangoutEvent[]>(EVENTS_KEY);
-  if (existing) return existing;
-  const seeded = seedEvents();
-  writeJSON(EVENTS_KEY, seeded);
-  return seeded;
+function participantsCollectionRef(eventId: string) {
+  return collection(db, EVENTS_COLLECTION, eventId, PARTICIPANTS_SUBCOLLECTION);
 }
 
-function saveEvents(events: HangoutEvent[]): void {
-  writeJSON(EVENTS_KEY, events);
+function participantDocRef(eventId: string, uid: string) {
+  return doc(db, EVENTS_COLLECTION, eventId, PARTICIPANTS_SUBCOLLECTION, uid);
 }
 
-class LocalEventsRepository implements EventsRepository {
-  async list(): Promise<HangoutEvent[]> {
-    return loadEvents();
-  }
-
-  async create(draft: EventDraft, organizer: UserProfile): Promise<HangoutEvent> {
-    const events = loadEvents();
-    const event: HangoutEvent = {
-      id: crypto.randomUUID(),
-      organizerId: organizer.id,
-      participants: [organizer],
-      ...draft,
-    };
-    saveEvents([event, ...events]);
-    return event;
-  }
-
-  async update(id: string, draft: EventDraft): Promise<HangoutEvent> {
-    const events = loadEvents();
-    const index = events.findIndex((event) => event.id === id);
-    if (index === -1) throw new Error('Evento non trovato');
-    const updated = { ...events[index], ...draft };
-    events[index] = updated;
-    saveEvents(events);
-    return updated;
-  }
-
-  async remove(id: string): Promise<void> {
-    saveEvents(loadEvents().filter((event) => event.id !== id));
-  }
-
-  async join(id: string, participant: UserProfile): Promise<HangoutEvent> {
-    const events = loadEvents();
-    const index = events.findIndex((event) => event.id === id);
-    if (index === -1) throw new Error('Evento non trovato');
-    const event = events[index];
-    if (event.participants.some((p) => p.id === participant.id)) return event;
-    const updated = { ...event, participants: [...event.participants, participant] };
-    events[index] = updated;
-    saveEvents(events);
-    return updated;
-  }
-
-  async leave(id: string, userId: string): Promise<HangoutEvent> {
-    const events = loadEvents();
-    const index = events.findIndex((event) => event.id === id);
-    if (index === -1) throw new Error('Evento non trovato');
-    const event = events[index];
-    const updated = { ...event, participants: event.participants.filter((p) => p.id !== userId) };
-    events[index] = updated;
-    saveEvents(events);
-    return updated;
-  }
+function toHangoutEvent(id: string, data: Record<string, unknown>): HangoutEvent {
+  return {
+    id,
+    title: data.title as string,
+    date: data.date as string,
+    time: data.time as string,
+    location: data.location as string,
+    maxParticipants: data.maxParticipants as number,
+    description: (data.description as string | null) ?? undefined,
+    organizerId: data.organizerId as string,
+    participantsCount: data.participantsCount as number,
+    participantsPreview: (data.participantsPreview as ParticipantPreview[]) ?? [],
+  };
 }
 
-export const eventsRepository: EventsRepository = new LocalEventsRepository();
+function toParticipant(id: string, data: Record<string, unknown>): EventParticipant {
+  return {
+    id,
+    nickname: data.nickname as string,
+    whatsapp: (data.whatsapp as string | null) ?? undefined,
+    instagram: (data.instagram as string | null) ?? undefined,
+    telegram: (data.telegram as string | null) ?? undefined,
+  };
+}
+
+function draftToFields(draft: EventDraft) {
+  return {
+    title: draft.title,
+    date: draft.date,
+    time: draft.time,
+    location: draft.location,
+    maxParticipants: draft.maxParticipants,
+    description: draft.description ?? null,
+  };
+}
+
+function participantSnapshotFields(participant: UserProfile) {
+  return {
+    nickname: participant.nickname,
+    whatsapp: participant.whatsapp ?? null,
+    instagram: participant.instagram ?? null,
+    telegram: participant.telegram ?? null,
+    joinedAt: serverTimestamp(),
+  };
+}
+
+export function subscribeToEvents(callback: (events: HangoutEvent[]) => void): Unsubscribe {
+  const eventsQuery = query(eventsCollectionRef(), orderBy('date', 'asc'), orderBy('time', 'asc'));
+  return onSnapshot(eventsQuery, (snapshot) => {
+    callback(snapshot.docs.map((docSnap) => toHangoutEvent(docSnap.id, docSnap.data())));
+  });
+}
+
+export function subscribeToParticipants(
+  eventId: string,
+  callback: (participants: EventParticipant[]) => void,
+): Unsubscribe {
+  const participantsQuery = query(participantsCollectionRef(eventId), orderBy('joinedAt', 'asc'));
+  return onSnapshot(participantsQuery, (snapshot) => {
+    callback(snapshot.docs.map((docSnap) => toParticipant(docSnap.id, docSnap.data())));
+  });
+}
+
+export async function createEvent(draft: EventDraft, organizer: UserProfile): Promise<string> {
+  const eventRef = doc(eventsCollectionRef());
+  const batch = writeBatch(db);
+
+  batch.set(eventRef, {
+    ...draftToFields(draft),
+    organizerId: organizer.id,
+    participantsCount: 1,
+    participantsPreview: [{ id: organizer.id, nickname: organizer.nickname }] satisfies ParticipantPreview[],
+    createdAt: serverTimestamp(),
+  });
+  batch.set(participantDocRef(eventRef.id, organizer.id), participantSnapshotFields(organizer));
+
+  await batch.commit();
+  return eventRef.id;
+}
+
+export async function updateEvent(eventId: string, draft: EventDraft): Promise<void> {
+  await updateDoc(eventDocRef(eventId), draftToFields(draft));
+}
+
+export async function removeEvent(eventId: string): Promise<void> {
+  const participantsSnapshot = await getDocs(participantsCollectionRef(eventId));
+  const batch = writeBatch(db);
+  participantsSnapshot.docs.forEach((docSnap) => batch.delete(docSnap.ref));
+  batch.delete(eventDocRef(eventId));
+  await batch.commit();
+}
+
+export async function joinEvent(eventId: string, participant: UserProfile): Promise<void> {
+  await runTransaction(db, async (transaction) => {
+    const eventSnap = await transaction.get(eventDocRef(eventId));
+    if (!eventSnap.exists()) throw new Error('Evento non trovato');
+    const event = eventSnap.data();
+
+    const participantSnap = await transaction.get(participantDocRef(eventId, participant.id));
+    if (participantSnap.exists()) return;
+
+    const currentCount = event.participantsCount as number;
+    const maxParticipants = event.maxParticipants as number;
+    if (currentCount >= maxParticipants) throw new Error('Evento pieno');
+
+    const currentPreview = (event.participantsPreview as ParticipantPreview[]) ?? [];
+    const nextPreview =
+      currentPreview.length < PREVIEW_SIZE
+        ? [...currentPreview, { id: participant.id, nickname: participant.nickname }]
+        : currentPreview;
+
+    transaction.set(participantDocRef(eventId, participant.id), participantSnapshotFields(participant));
+    transaction.update(eventDocRef(eventId), {
+      participantsCount: currentCount + 1,
+      participantsPreview: nextPreview,
+    });
+  });
+}
+
+export async function leaveEvent(eventId: string, userId: string): Promise<void> {
+  await runTransaction(db, async (transaction) => {
+    const eventSnap = await transaction.get(eventDocRef(eventId));
+    if (!eventSnap.exists()) return;
+    const event = eventSnap.data();
+
+    const participantSnap = await transaction.get(participantDocRef(eventId, userId));
+    if (!participantSnap.exists()) return;
+
+    const currentCount = event.participantsCount as number;
+    const currentPreview = (event.participantsPreview as ParticipantPreview[]) ?? [];
+    const nextPreview = currentPreview.filter((entry) => entry.id !== userId);
+
+    transaction.delete(participantDocRef(eventId, userId));
+    transaction.update(eventDocRef(eventId), {
+      participantsCount: Math.max(0, currentCount - 1),
+      participantsPreview: nextPreview,
+    });
+  });
+}

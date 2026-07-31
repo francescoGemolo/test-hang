@@ -3,7 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import type { IconSvgElement } from '@hugeicons/react';
 import { Alert01Icon, Delete02Icon, InstagramIcon, Pen01Icon, TelegramIcon, UserIcon, WhatsappIcon } from '@hugeicons/core-free-icons';
 import { useAuth } from '../hooks/useAuth';
-import { isRequired } from '../lib/validators';
+import { isValidHandle, isValidNickname, isValidWhatsapp } from '../lib/validators';
+import { mapAuthError } from '../lib/firebaseErrors';
 import { AppShell } from '../components/layout/AppShell';
 import { HeaderBack } from '../components/layout/HeaderBack';
 import { Avatar } from '../components/ui/Avatar';
@@ -15,6 +16,8 @@ import { Icon } from '../components/ui/Icon';
 interface FormErrors {
   nickname?: string;
   whatsapp?: string;
+  instagram?: string;
+  telegram?: string;
 }
 
 function ProfileInfoRow({ icon, label, value, className }: { icon: IconSvgElement; label: string; value: string; className: string }) {
@@ -32,25 +35,26 @@ function ProfileInfoRow({ icon, label, value, className }: { icon: IconSvgElemen
 }
 
 export default function ProfilePage() {
-  const { user, updateProfile, logout } = useAuth();
+  const { profile, updateProfile, deleteAccount } = useAuth();
   const navigate = useNavigate();
 
   const [isEditing, setIsEditing] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [deleteError, setDeleteError] = useState('');
 
-  const [nickname, setNickname] = useState(user?.nickname ?? '');
-  const [whatsapp, setWhatsapp] = useState(user?.whatsapp ?? '');
-  const [instagram, setInstagram] = useState(user?.instagram ?? '');
-  const [telegram, setTelegram] = useState(user?.telegram ?? '');
+  const [nickname, setNickname] = useState(profile?.nickname ?? '');
+  const [whatsapp, setWhatsapp] = useState(profile?.whatsapp ?? '');
+  const [instagram, setInstagram] = useState(profile?.instagram ?? '');
+  const [telegram, setTelegram] = useState(profile?.telegram ?? '');
   const [errors, setErrors] = useState<FormErrors>({});
 
-  if (!user) return null;
+  if (!profile) return null;
 
   function enterEditMode() {
-    setNickname(user!.nickname);
-    setWhatsapp(user!.whatsapp ?? '');
-    setInstagram(user!.instagram ?? '');
-    setTelegram(user!.telegram ?? '');
+    setNickname(profile!.nickname);
+    setWhatsapp(profile!.whatsapp ?? '');
+    setInstagram(profile!.instagram ?? '');
+    setTelegram(profile!.telegram ?? '');
     setErrors({});
     setIsEditing(true);
   }
@@ -59,8 +63,10 @@ export default function ProfilePage() {
     event.preventDefault();
 
     const nextErrors: FormErrors = {};
-    if (!isRequired(nickname)) nextErrors.nickname = 'Inserisci un nickname.';
-    if (!isRequired(whatsapp)) nextErrors.whatsapp = 'Inserisci il numero WhatsApp.';
+    if (!isValidNickname(nickname)) nextErrors.nickname = '3-15 caratteri: lettere, numeri, punto o underscore.';
+    if (!isValidWhatsapp(whatsapp)) nextErrors.whatsapp = 'Inserisci un numero WhatsApp valido (8-16 cifre).';
+    if (!isValidHandle(instagram)) nextErrors.instagram = 'Username non valido.';
+    if (!isValidHandle(telegram)) nextErrors.telegram = 'Username non valido.';
     setErrors(nextErrors);
     if (Object.keys(nextErrors).length > 0) return;
 
@@ -74,8 +80,13 @@ export default function ProfilePage() {
   }
 
   async function handleDeleteAccount() {
-    await logout();
-    navigate('/');
+    setDeleteError('');
+    try {
+      await deleteAccount();
+      navigate('/');
+    } catch (error) {
+      setDeleteError(mapAuthError(error));
+    }
   }
 
   return (
@@ -83,35 +94,35 @@ export default function ProfilePage() {
       <HeaderBack to="/events" title="Il tuo profilo" />
       <main className="flex flex-col gap-10">
         <div className="flex flex-col items-center gap-3">
-          <Avatar label={user.nickname} size="lg" />
-          <h2 className="text-2xl font-semibold">{user.nickname}</h2>
+          <Avatar label={profile.nickname} size="lg" />
+          <h2 className="text-2xl font-semibold">{profile.nickname}</h2>
         </div>
 
         <article className="flex flex-col gap-4.5 rounded-3xl border border-white/20 bg-surface p-5">
           {!isEditing ? (
             <>
               <div className="flex flex-col gap-3">
-                {user.whatsapp && (
+                {profile.whatsapp && (
                   <ProfileInfoRow
                     icon={WhatsappIcon}
                     label="WhatsApp"
-                    value={user.whatsapp}
+                    value={profile.whatsapp}
                     className="border-whatsapp/40 bg-whatsapp/20 text-whatsapp"
                   />
                 )}
-                {user.instagram && (
+                {profile.instagram && (
                   <ProfileInfoRow
                     icon={InstagramIcon}
                     label="Instagram"
-                    value={`@${user.instagram}`}
+                    value={`@${profile.instagram}`}
                     className="border-instagram/40 bg-instagram/20 text-instagram"
                   />
                 )}
-                {user.telegram && (
+                {profile.telegram && (
                   <ProfileInfoRow
                     icon={TelegramIcon}
                     label="Telegram"
-                    value={`@${user.telegram}`}
+                    value={`@${profile.telegram}`}
                     className="border-telegram/40 bg-telegram/20 text-telegram"
                   />
                 )}
@@ -121,7 +132,14 @@ export default function ProfilePage() {
                   <Icon icon={Pen01Icon} size={18} />
                   Modifica
                 </Button>
-                <Button variant="secondaryDanger" className="w-full" onClick={() => setIsDeleteModalOpen(true)}>
+                <Button
+                  variant="secondaryDanger"
+                  className="w-full"
+                  onClick={() => {
+                    setDeleteError('');
+                    setIsDeleteModalOpen(true);
+                  }}
+                >
                   <Icon icon={Delete02Icon} size={18} />
                   Elimina account
                 </Button>
@@ -154,6 +172,7 @@ export default function ProfilePage() {
                 optional
                 value={instagram}
                 onChange={(event) => setInstagram(event.target.value)}
+                error={errors.instagram}
               />
               <Input
                 id="telegram"
@@ -162,6 +181,7 @@ export default function ProfilePage() {
                 optional
                 value={telegram}
                 onChange={(event) => setTelegram(event.target.value)}
+                error={errors.telegram}
               />
               <div className="mt-1 flex flex-col gap-3">
                 <Button type="submit" variant="primary">
@@ -183,6 +203,7 @@ export default function ProfilePage() {
         title="Eliminare l'account?"
         description="Sei sicuro di voler eliminare il tuo account? Questa azione è irreversibile e perderai la partecipazione a tutti gli eventi."
       >
+        {deleteError && <p className="text-sm text-danger">{deleteError}</p>}
         <Button variant="danger" onClick={handleDeleteAccount}>
           Sì, elimina
         </Button>

@@ -1,14 +1,24 @@
 import { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import type { IconSvgElement } from '@hugeicons/react';
-import { Add01Icon, Calendar05Icon, Clock01Icon, Delete02Icon, PinLocation01Icon, UserGroupIcon } from '@hugeicons/core-free-icons';
+import {
+  Add01Icon,
+  Calendar05Icon,
+  Clock01Icon,
+  Delete02Icon,
+  PinLocation01Icon,
+  SquareLock02Icon,
+  UserGroupIcon,
+} from '@hugeicons/core-free-icons';
 import { useAuth } from '../hooks/useAuth';
 import { useEvents } from '../hooks/useEvents';
+import { useEventParticipants } from '../hooks/useEventParticipants';
 import { formatEventDate } from '../lib/formatters';
 import { AppShell } from '../components/layout/AppShell';
 import { HeaderBack } from '../components/layout/HeaderBack';
 import { Icon } from '../components/ui/Icon';
 import { Button } from '../components/ui/Button';
+import { LinkButton } from '../components/ui/LinkButton';
 import { ParticipantItem } from '../components/events/ParticipantItem';
 
 function InfoRow({ icon, text }: { icon: IconSvgElement; text: string }) {
@@ -22,27 +32,32 @@ function InfoRow({ icon, text }: { icon: IconSvgElement; text: string }) {
 
 export default function EventDetailsPage() {
   const { id } = useParams();
-  const { user } = useAuth();
+  const { status, profile } = useAuth();
   const { events, isLoading, joinEvent, leaveEvent } = useEvents();
   const navigate = useNavigate();
 
+  const isAuthenticated = status === 'authenticated';
   const event = events.find((item) => item.id === id);
+  const { participants, isLoading: isLoadingParticipants } = useEventParticipants(id ?? '', isAuthenticated);
 
   useEffect(() => {
     if (!isLoading && !event) navigate('/events', { replace: true });
   }, [isLoading, event, navigate]);
 
-  if (isLoading || !event || !user) return null;
+  if (isLoading || !event) return null;
 
-  const isParticipant = event.participants.some((participant) => participant.id === user.id);
-  const isFull = event.participants.length >= event.maxParticipants;
+  const isParticipant = profile !== null && participants.some((participant) => participant.id === profile.id);
+  const isFull = event.participantsCount >= event.maxParticipants;
 
-  async function handleToggleParticipation() {
-    if (!user) return;
+  async function handleParticipateClick() {
+    if (!isAuthenticated || !profile) {
+      navigate(`/login?redirect=${encodeURIComponent(`/events/${event!.id}`)}`);
+      return;
+    }
     if (isParticipant) {
-      await leaveEvent(event!.id, user.id);
+      await leaveEvent(event!.id, profile.id);
     } else {
-      await joinEvent(event!.id, user);
+      await joinEvent(event!.id, profile);
     }
   }
 
@@ -59,7 +74,7 @@ export default function EventDetailsPage() {
               <InfoRow icon={PinLocation01Icon} text={event.location} />
               <InfoRow
                 icon={UserGroupIcon}
-                text={`${event.participants.length} / ${event.maxParticipants} partecipanti`}
+                text={`${event.participantsCount} / ${event.maxParticipants} partecipanti`}
               />
             </div>
             {event.description && (
@@ -71,23 +86,39 @@ export default function EventDetailsPage() {
           <Button
             variant="outline"
             className="mt-5 w-full"
-            disabled={!isParticipant && isFull}
-            onClick={handleToggleParticipation}
+            disabled={isAuthenticated && !isParticipant && isFull}
+            onClick={handleParticipateClick}
           >
             <Icon icon={isParticipant ? Delete02Icon : Add01Icon} size={18} />
-            {isParticipant ? 'Annulla partecipazione' : isFull ? 'Evento pieno' : 'Partecipa'}
+            {isParticipant ? 'Annulla partecipazione' : isAuthenticated && isFull ? 'Evento pieno' : 'Partecipa'}
           </Button>
         </div>
 
         <section className="flex flex-col gap-3">
-          <h2 className="text-xl font-semibold">Partecipanti ({event.participants.length})</h2>
-          {event.participants.map((participant) => (
-            <ParticipantItem
-              key={participant.id}
-              participant={participant}
-              isOrganizer={participant.id === event.organizerId}
-            />
-          ))}
+          <h2 className="text-xl font-semibold">Partecipanti ({event.participantsCount})</h2>
+          {!isAuthenticated ? (
+            <div className="flex flex-col items-center gap-3 rounded-3xl border border-dashed border-white/20 bg-surface px-4.5 py-8 text-center">
+              <Icon icon={SquareLock02Icon} size={28} className="text-neutral-500" />
+              <p className="max-w-xs text-sm leading-relaxed text-neutral-400">
+                Accedi per vedere chi partecipa e i loro contatti.
+              </p>
+              <LinkButton
+                to={`/login?redirect=${encodeURIComponent(`/events/${event.id}`)}`}
+                variant="outline"
+                className="w-auto"
+              >
+                Accedi
+              </LinkButton>
+            </div>
+          ) : isLoadingParticipants ? null : (
+            participants.map((participant) => (
+              <ParticipantItem
+                key={participant.id}
+                participant={participant}
+                isOrganizer={participant.id === event.organizerId}
+              />
+            ))
+          )}
         </section>
       </div>
     </AppShell>

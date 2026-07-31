@@ -12,17 +12,19 @@ import { Avatar } from '../components/ui/Avatar';
 import { Icon } from '../components/ui/Icon';
 
 export default function EventsPage() {
-  const { user } = useAuth();
+  const { status, profile } = useAuth();
   const { events, isLoading, deleteEvent } = useEvents();
   const [filter, setFilter] = useState<EventFilter>('all');
   const navigate = useNavigate();
   const { isActive, isHidden } = useScrollFab();
 
-  if (!user) return null;
+  const isGuest = status !== 'authenticated';
 
   const filteredEvents = events.filter((event) => {
-    if (filter === 'mine') return event.organizerId === user.id;
-    if (filter === 'joined') return event.participants.some((participant) => participant.id === user.id);
+    if (filter === 'mine') return profile !== null && event.organizerId === profile.id;
+    if (filter === 'joined') {
+      return profile !== null && event.participantsPreview.some((participant) => participant.id === profile.id);
+    }
     return true;
   });
 
@@ -31,9 +33,19 @@ export default function EventsPage() {
       <header className="flex w-full items-center justify-between border-b border-white/10 pb-3">
         <p className="text-lg">Scopri gli eventi</p>
         <Link to="/profile">
-          <Avatar label={user.nickname} />
+          <Avatar label={isGuest ? 'Ospite' : (profile?.nickname ?? '?')} />
         </Link>
       </header>
+
+      {isGuest && (
+        <Link
+          to="/login"
+          className="mt-4.5 flex items-center justify-between gap-2 rounded-xl border border-accent-hover/40 bg-accent/10 px-4 py-3 text-sm text-accent transition hover:bg-accent/15"
+        >
+          Stai navigando come ospite: accedi per creare eventi e partecipare
+          <span className="font-semibold whitespace-nowrap">Accedi →</span>
+        </Link>
+      )}
 
       <EventFilters active={filter} onChange={setFilter} />
 
@@ -50,7 +62,7 @@ export default function EventsPage() {
           <EventCard
             key={event.id}
             event={event}
-            currentUserId={user.id}
+            currentUserId={profile?.id}
             onEdit={() => navigate(`/events/${event.id}/edit`)}
             onDelete={() => deleteEvent(event.id)}
           />

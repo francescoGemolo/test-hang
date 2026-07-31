@@ -1,5 +1,10 @@
 import type { UserProfile } from './user';
 
+export interface ParticipantPreview {
+  id: string;
+  nickname: string;
+}
+
 export interface HangoutEvent {
   id: string;
   title: string;
@@ -9,10 +14,13 @@ export interface HangoutEvent {
   maxParticipants: number;
   description?: string;
   organizerId: string;
-  participants: UserProfile[];
+  participantsCount: number;
+  participantsPreview: ParticipantPreview[];
 }
 
 export type EventDraft = Pick<
   HangoutEvent,
   'title' | 'date' | 'time' | 'location' | 'maxParticipants' | 'description'
 >;
+
+export type EventParticipant = UserProfile;

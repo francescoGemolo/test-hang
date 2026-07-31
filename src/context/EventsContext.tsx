@@ -1,12 +1,12 @@
 import { createContext, useCallback, useEffect, useState, type ReactNode } from 'react';
-import { eventsRepository } from '../data/eventsRepository';
+import { createEvent, joinEvent, leaveEvent, removeEvent, subscribeToEvents, updateEvent } from '../data/eventsRepository';
 import type { EventDraft, HangoutEvent } from '../types/event';
 import type { UserProfile } from '../types/user';
 
 export interface EventsContextValue {
   events: HangoutEvent[];
   isLoading: boolean;
-  createEvent: (draft: EventDraft, organizer: UserProfile) => Promise<HangoutEvent>;
+  createEvent: (draft: EventDraft, organizer: UserProfile) => Promise<string>;
   updateEvent: (id: string, draft: EventDraft) => Promise<void>;
   deleteEvent: (id: string) => Promise<void>;
   joinEvent: (id: string, participant: UserProfile) => Promise<void>;
@@ -20,41 +20,30 @@ export function EventsProvider({ children }: { children: ReactNode }) {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    eventsRepository.list().then((list) => {
-      setEvents(list);
+    const unsubscribe = subscribeToEvents((nextEvents) => {
+      setEvents(nextEvents);
       setIsLoading(false);
     });
+    return unsubscribe;
   }, []);
 
-  const createEvent = useCallback(async (draft: EventDraft, organizer: UserProfile) => {
-    const event = await eventsRepository.create(draft, organizer);
-    setEvents((prev) => [event, ...prev]);
-    return event;
-  }, []);
-
-  const updateEvent = useCallback(async (id: string, draft: EventDraft) => {
-    const updated = await eventsRepository.update(id, draft);
-    setEvents((prev) => prev.map((event) => (event.id === id ? updated : event)));
-  }, []);
-
-  const deleteEvent = useCallback(async (id: string) => {
-    await eventsRepository.remove(id);
-    setEvents((prev) => prev.filter((event) => event.id !== id));
-  }, []);
-
-  const joinEvent = useCallback(async (id: string, participant: UserProfile) => {
-    const updated = await eventsRepository.join(id, participant);
-    setEvents((prev) => prev.map((event) => (event.id === id ? updated : event)));
-  }, []);
-
-  const leaveEvent = useCallback(async (id: string, userId: string) => {
-    const updated = await eventsRepository.leave(id, userId);
-    setEvents((prev) => prev.map((event) => (event.id === id ? updated : event)));
-  }, []);
+  const handleCreateEvent = useCallback((draft: EventDraft, organizer: UserProfile) => createEvent(draft, organizer), []);
+  const handleUpdateEvent = useCallback((id: string, draft: EventDraft) => updateEvent(id, draft), []);
+  const handleDeleteEvent = useCallback((id: string) => removeEvent(id), []);
+  const handleJoinEvent = useCallback((id: string, participant: UserProfile) => joinEvent(id, participant), []);
+  const handleLeaveEvent = useCallback((id: string, userId: string) => leaveEvent(id, userId), []);
 
   return (
     <EventsContext.Provider
-      value={{ events, isLoading, createEvent, updateEvent, deleteEvent, joinEvent, leaveEvent }}
+      value={{
+        events,
+        isLoading,
+        createEvent: handleCreateEvent,
+        updateEvent: handleUpdateEvent,
+        deleteEvent: handleDeleteEvent,
+        joinEvent: handleJoinEvent,
+        leaveEvent: handleLeaveEvent,
+      }}
     >
       {children}
     </EventsContext.Provider>
